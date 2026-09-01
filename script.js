@@ -19,6 +19,7 @@ window.addEventListener("scroll", revealOnScroll);
 
 revealOnScroll();
 
+
 const themeButton = document.querySelector("#theme-toggle");
 
 themeButton.addEventListener("click", function() {
@@ -32,6 +33,8 @@ themeButton.addEventListener("click", function() {
   }
 
 });
+
+
 const contactForm = document.querySelector("#contact-form");
 const formMessage = document.querySelector("#form-message");
 
@@ -44,23 +47,33 @@ contactForm.addEventListener("submit", async function(event) {
   const message = document.querySelector("#message").value.trim();
 
   if (name === "" || email === "" || message === "") {
+
     formMessage.textContent = "Please complete all fields.";
     formMessage.style.color = "#f87171";
+
     return;
+
   }
+
 
   formMessage.textContent = "Sending...";
   formMessage.style.color = "#a78bfa";
 
+
   try {
 
     const response = await fetch(contactForm.action, {
+
       method: "POST",
+
       body: new FormData(contactForm),
+
       headers: {
         "Accept": "application/json"
       }
+
     });
+
 
     if (response.ok) {
 
@@ -71,6 +84,16 @@ contactForm.addEventListener("submit", async function(event) {
 
       contactForm.reset();
 
+
+      // Hide success message after 4 seconds
+
+      setTimeout(function() {
+
+        formMessage.textContent = "";
+
+      }, 4000);
+
+
     } else {
 
       formMessage.textContent =
@@ -79,6 +102,7 @@ contactForm.addEventListener("submit", async function(event) {
       formMessage.style.color = "#f87171";
 
     }
+
 
   } catch (error) {
 
