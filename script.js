@@ -11,7 +11,6 @@ function revealOnScroll() {
   elements.forEach(function (element) {
     const position = element.getBoundingClientRect().top;
 
-    // Show element when it enters (or is near) the viewport
     if (position < screenHeight - 50) {
       element.classList.add("show");
     }
@@ -20,11 +19,8 @@ function revealOnScroll() {
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
-
-// Run once immediately so content above the fold is visible
 revealOnScroll();
 
-// Safety: if anything is still hidden after a short delay, show everything
 setTimeout(function () {
   elements.forEach(function (element) {
     element.classList.add("show");
@@ -33,7 +29,7 @@ setTimeout(function () {
 
 
 // =========================
-// THEME TOGGLE
+// THEME TOGGLE (brightness)
 // =========================
 const themeButton = document.querySelector("#theme-toggle");
 
@@ -60,9 +56,13 @@ if (contactForm && formMessage) {
   contactForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    const name = document.querySelector("#name").value.trim();
-    const email = document.querySelector("#email").value.trim();
-    const message = document.querySelector("#message").value.trim();
+    const nameField = document.querySelector("#name");
+    const emailField = document.querySelector("#email");
+    const messageField = document.querySelector("#message");
+
+    const name = nameField ? nameField.value.trim() : "";
+    const email = emailField ? emailField.value.trim() : "";
+    const message = messageField ? messageField.value.trim() : "";
 
     if (name === "" || email === "" || message === "") {
       formMessage.textContent = "Please complete all fields.";
@@ -77,9 +77,7 @@ if (contactForm && formMessage) {
       const response = await fetch(contactForm.action, {
         method: "POST",
         body: new FormData(contactForm),
-        headers: {
-          Accept: "application/json"
-        }
+        headers: { Accept: "application/json" }
       });
 
       if (response.ok) {
@@ -105,7 +103,7 @@ if (contactForm && formMessage) {
 
 
 // =========================
-// MOBILE MENU
+// MOBILE NAV MENU
 // =========================
 const menuToggle = document.getElementById("menu-toggle");
 const navLinks = document.getElementById("nav-links");
@@ -131,7 +129,6 @@ if (menuToggle && navLinks) {
     });
   });
 
-  // Close menu when tapping outside
   document.addEventListener("click", function (event) {
     if (!navLinks.classList.contains("active")) return;
 
@@ -142,4 +139,31 @@ if (menuToggle && navLinks) {
       closeMenu();
     }
   });
+}
+
+
+// =========================
+// SCRIPT SAMPLE TOGGLE
+// (needed for onclick="toggleScript(...)")
+// =========================
+function toggleScript(id) {
+  const script = document.getElementById(id);
+  if (!script) return;
+
+  if (script.classList.contains("open")) {
+    script.classList.remove("open");
+  } else {
+    document.querySelectorAll(".script-full.open").forEach(function (item) {
+      item.classList.remove("open");
+    });
+
+    script.classList.add("open");
+
+    setTimeout(function () {
+      script.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }, 100);
+  }
 }
