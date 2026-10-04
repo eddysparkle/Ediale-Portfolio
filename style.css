@@ -982,4 +982,29 @@ padding: 50px 25px;
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Fix: make all sections visible */
+.section,
+.project,
+.skill,
+.contact,
+.scriptwriting-section {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+
   
