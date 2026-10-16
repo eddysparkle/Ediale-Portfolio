@@ -935,7 +935,328 @@ function toggleScript(id) {
 
   
 
-  <!-- Ediale AI Portfolio Chatbot -->
+<!-- ================= EDIALE AI CHATBOT ================= -->
+
+<style>
+  #ediale-chat-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 99999;
+    border: none;
+    border-radius: 50px;
+    padding: 14px 20px;
+    background: #7c5cff;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 20px #0005;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #ediale-chat-button:active {
+    transform: scale(0.97);
+  }
+
+  #ediale-chat-box {
+    display: none;
+    position: fixed;
+    right: 20px;
+    bottom: 85px;
+    width: 350px;
+    max-width: calc(100vw - 40px);
+    height: 440px;
+    max-height: calc(100vh - 120px);
+    z-index: 99999;
+    background: #10131c;
+    color: #f5f5f7;
+    border: 1px solid #343044;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 35px #0008;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+
+  #ediale-chat-box * {
+    box-sizing: border-box;
+  }
+
+  #ediale-chat-header {
+    height: 58px;
+    background: #7c5cff;
+    padding: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #ediale-chat-close {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    padding: 0 5px;
+  }
+
+  #ediale-chat-messages {
+    height: calc(100% - 125px);
+    overflow-y: auto;
+    padding: 14px;
+  }
+
+  .ediale-chat-message {
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    line-height: 1.5;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+  }
+
+  .ediale-chat-bot {
+    background: #202431;
+    margin-right: 15px;
+  }
+
+  .ediale-chat-user {
+    background: #4935a5;
+    margin-left: 15px;
+  }
+
+  #ediale-chat-form {
+    height: 67px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    border-top: 1px solid #343044;
+  }
+
+  #ediale-chat-input {
+    min-width: 0;
+    width: 100%;
+    flex: 1;
+    padding: 11px;
+    border-radius: 8px;
+    border: 1px solid #454052;
+    background: #1b1e29;
+    color: white;
+    font-size: 14px;
+  }
+
+  #ediale-chat-input:focus {
+    outline: 2px solid #7c5cff;
+  }
+
+  #ediale-chat-form button {
+    border: none;
+    border-radius: 8px;
+    background: #7c5cff;
+    color: white;
+    padding: 11px 13px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  #ediale-chat-form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 480px) {
+    #ediale-chat-button {
+      right: 14px;
+      bottom: 14px;
+    }
+
+    #ediale-chat-box {
+      right: 10px;
+      bottom: 75px;
+      width: calc(100vw - 20px);
+      max-width: 400px;
+      height: 440px;
+      max-height: calc(100dvh - 100px);
+    }
+  }
+</style>
+
+<button
+  id="ediale-chat-button"
+  type="button"
+  aria-label="Open Ediale AI assistant"
+  aria-expanded="false"
+>
+  ✨ Ask Ediale AI
+</button>
+
+<section
+  id="ediale-chat-box"
+  aria-label="Ediale AI Portfolio Assistant"
+>
+  <div id="ediale-chat-header">
+    <span>Ediale AI Assistant</span>
+
+    <button
+      id="ediale-chat-close"
+      type="button"
+      aria-label="Close chat"
+    >
+      ×
+    </button>
+  </div>
+
+  <div id="ediale-chat-messages" aria-live="polite">
+    <div class="ediale-chat-message ediale-chat-bot">
+      Hi! 👋 Welcome to Ediale's portfolio.
+
+      Ask me about his projects, frontend development skills, or website services.
+    </div>
+  </div>
+
+  <form id="ediale-chat-form">
+    <input
+      id="ediale-chat-input"
+      type="text"
+      placeholder="Ask me something..."
+      maxlength="1000"
+      aria-label="Your message"
+      autocomplete="off"
+      required
+    >
+
+    <button id="ediale-chat-send" type="submit">
+      Send
+    </button>
+  </form>
+</section>
+
+<script>
+(() => {
+  "use strict";
+
+  const WORKER_URL =
+    "https://ediale-portfolio-ai.edialeeghonghon.workers.dev";
+
+  const chatButton = document.getElementById("ediale-chat-button");
+  const chatBox = document.getElementById("ediale-chat-box");
+  const closeButton = document.getElementById("ediale-chat-close");
+  const chatForm = document.getElementById("ediale-chat-form");
+  const chatInput = document.getElementById("ediale-chat-input");
+  const sendButton = document.getElementById("ediale-chat-send");
+  const messages = document.getElementById("ediale-chat-messages");
+
+  if (
+    !chatButton ||
+    !chatBox ||
+    !closeButton ||
+    !chatForm ||
+    !chatInput ||
+    !sendButton ||
+    !messages
+  ) {
+    console.error("Ediale chatbot: Required HTML elements are missing.");
+    return;
+  }
+
+  // Open the chat window.
+  chatButton.addEventListener("click", () => {
+    chatBox.style.display = "block";
+    chatButton.style.display = "none";
+    chatButton.setAttribute("aria-expanded", "true");
+
+    setTimeout(() => chatInput.focus(), 100);
+  });
+
+  // Close the chat window.
+  closeButton.addEventListener("click", () => {
+    chatBox.style.display = "none";
+    chatButton.style.display = "block";
+    chatButton.setAttribute("aria-expanded", "false");
+  });
+
+  // Display a message safely.
+  function addMessage(text, sender) {
+    const message = document.createElement("div");
+
+    message.className =
+      "ediale-chat-message ediale-chat-" + sender;
+
+    message.textContent = text;
+
+    messages.appendChild(message);
+    messages.scrollTop = messages.scrollHeight;
+
+    return message;
+  }
+
+  // Send a question to the Cloudflare AI Worker.
+  chatForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const message = chatInput.value.trim();
+
+    if (!message) {
+      return;
+    }
+
+    addMessage(message, "user");
+
+    chatInput.value = "";
+    chatInput.disabled = true;
+    sendButton.disabled = true;
+
+    const loadingMessage = addMessage(
+      "Thinking...",
+      "bot"
+    );
+
+    try {
+      const response = await fetch(WORKER_URL, {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          message: message
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.error || "The AI service returned an error."
+        );
+      }
+
+      loadingMessage.textContent =
+        data.reply ||
+        "Sorry, I couldn't generate a response. Please try again.";
+
+    } catch (error) {
+      console.error("Ediale chatbot error:", error);
+
+      loadingMessage.textContent =
+        "Sorry, I couldn't connect to the AI assistant. Please try again shortly.";
+    } finally {
+      chatInput.disabled = false;
+      sendButton.disabled = false;
+      chatInput.focus();
+    }
+  });
+
+})();
+</script>
+
+</body>
+</html>
 
 
 
