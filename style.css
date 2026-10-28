@@ -1169,3 +1169,131 @@ body.light-theme .project-visual {
     width: calc(100vw - 20px);
   }
 }
+
+
+
+
+
+
+
+
+/* EDIALE AI — MATCH SAVOURÉ WHATSAPP FLOATING BUTTON */
+
+#ediale-ai-widget {
+  position: static !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  pointer-events: none !important;
+}
+
+/* Circular floating button */
+#ediale-chat-button {
+  position: fixed !important;
+  right: 22px !important;
+  bottom: 22px !important;
+  left: auto !important;
+  top: auto !important;
+
+  z-index: 2147483000 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 56px !important;
+  height: 56px !important;
+  min-height: 56px !important;
+  padding: 0 !important;
+
+  border: none !important;
+  border-radius: 50% !important;
+
+  background: #25d366 !important;
+  color: #fff !important;
+
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3) !important;
+
+  transform: none;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease !important;
+
+  pointer-events: auto !important;
+}
+
+/* Hide the text and display the icon */
+#ediale-chat-button > span:last-child {
+  display: none !important;
+}
+
+#ediale-chat-button .chat-button-icon {
+  display: block !important;
+  font-size: 28px !important;
+  line-height: 1 !important;
+  color: #fff !important;
+}
+
+/* Subtle hover effect like Savouré */
+#ediale-chat-button:hover {
+  transform: scale(1.06) !important;
+  background: #25d366 !important;
+  color: #fff !important;
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45) !important;
+}
+
+/* Keep the chat window above the button */
+#ediale-chat-box {
+  position: fixed !important;
+  right: 22px !important;
+  bottom: 90px !important;
+  left: auto !important;
+  top: auto !important;
+
+  z-index: 2147482999 !important;
+
+  width: min(370px, calc(100vw - 24px)) !important;
+  max-width: calc(100vw - 24px) !important;
+  max-height: calc(100dvh - 115px) !important;
+
+  transform: none !important;
+}
+
+/* Mobile positioning matches Savouré's WhatsApp button */
+@media (max-width: 680px) {
+  #ediale-chat-button {
+    right: 16px !important;
+    bottom: 16px !important;
+    width: 52px !important;
+    height: 52px !important;
+    min-height: 52px !important;
+  }
+
+  #ediale-chat-button .chat-button-icon {
+    font-size: 26px !important;
+  }
+
+  #ediale-chat-box {
+    right: 12px !important;
+    bottom: 78px !important;
+    width: calc(100vw - 24px) !important;
+    max-width: 400px !important;
+    max-height: calc(100dvh - 100px) !important;
+  }
+}
+
+@media (max-width: 380px) {
+  #ediale-chat-button {
+    right: 16px !important;
+    bottom: 16px !important;
+  }
+
+  #ediale-chat-box {
+    right: 10px !important;
+    bottom: 76px !important;
+    width: calc(100vw - 20px) !important;
+  }
+}
+    
