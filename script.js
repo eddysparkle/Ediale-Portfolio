@@ -162,56 +162,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const AI_ENDPOINT =
     "https://ediale-portfolio-ai.edialeeghonghon.workers.dev";
 
-  /*
-    Move the widget directly under body if it has been placed
-    inside another element. This avoids transformed ancestors
-    interfering with fixed positioning.
-  */
+  // Ensure widget lives directly under <body> so fixed positioning works
   if (widget && widget.parentElement !== document.body) {
     document.body.appendChild(widget);
   }
 
-  /*
-    Position the button and chat window independently.
-    This is important: the outer widget is not used as the
-    positioning container for the fixed button or chat window.
-  */
-  function positionChat() {
-    if (!chatButton || !chatBox) return;
-
-    const mobile = window.matchMedia("(max-width: 680px)").matches;
-
-    Object.assign(chatButton.style, {
-      position: "fixed",
-      right: "max(12px, env(safe-area-inset-right))",
-      bottom: "max(12px, env(safe-area-inset-bottom))",
-      left: "auto",
-      top: "auto",
-      zIndex: "2147483000",
-      maxWidth: "calc(100vw - 24px)",
-      transform: "none"
-    });
-
-    Object.assign(chatBox.style, {
-      position: "fixed",
-      right: "max(12px, env(safe-area-inset-right))",
-      left: "auto",
-      top: "auto",
-      bottom: mobile
-        ? "calc(max(12px, env(safe-area-inset-bottom)) + 60px)"
-        : "calc(max(16px, env(safe-area-inset-bottom)) + 70px)",
-      zIndex: "2147482999",
-      maxWidth: "calc(100vw - 24px)"
-    });
+  // Clear any leftover inline styles that could push the button off-screen
+  if (chatButton) {
+    chatButton.style.cssText = "";
   }
-
-  positionChat();
-
-  window.addEventListener("resize", positionChat);
-  window.addEventListener("orientationchange", positionChat);
-
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener("resize", positionChat);
+  if (chatBox) {
+    chatBox.style.cssText = "";
   }
 
   function openChat() {
@@ -224,10 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
       chatButton.setAttribute("aria-expanded", "true");
     }
 
-    positionChat();
-
     if (chatInput) {
-      setTimeout(() => chatInput.focus(), 100);
+      setTimeout(() => chatInput.focus(), 80);
     }
   }
 
