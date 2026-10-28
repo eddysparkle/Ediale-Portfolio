@@ -1431,3 +1431,73 @@ body.light-theme #ediale-chat-box {
     max-height: 70vh !important;
   }
 }
+
+
+
+
+
+
+
+/* FIX MOBILE HORIZONTAL OVERFLOW */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Keep Ediale AI fixed to the visible screen */
+#ediale-ai-widget {
+  position: fixed !important;
+  right: 16px !important;
+  bottom: 16px !important;
+  left: auto !important;
+  top: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  z-index: 999999 !important;
+}
+
+/* Keep the button inside the phone screen */
+#ediale-chat-button {
+  position: fixed !important;
+  right: 16px !important;
+  bottom: 16px !important;
+  left: auto !important;
+  top: auto !important;
+  margin: 0 !important;
+  transform: none !important;
+  max-width: calc(100vw - 32px) !important;
+  box-sizing: border-box !important;
+  z-index: 1000000 !important;
+}
+
+/* Keep the chat window within the screen */
+#ediale-chat-box {
+  position: fixed !important;
+  right: 16px !important;
+  bottom: 80px !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
+  width: min(350px, calc(100vw - 32px)) !important;
+  max-width: calc(100vw - 32px) !important;
+  box-sizing: border-box !important;
+  z-index: 999999 !important;
+}
+
+@media (max-width: 480px) {
+  #ediale-ai-widget,
+  #ediale-chat-button {
+    right: 12px !important;
+    bottom: 12px !important;
+  }
+
+  #ediale-chat-box {
+    right: 12px !important;
+    bottom: 72px !important;
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+}
+
