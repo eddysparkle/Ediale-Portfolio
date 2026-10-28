@@ -1361,3 +1361,37 @@ body.light-theme .project-visual {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+
+
+
+
+
+
+     
+/* Final mobile viewport fix for Ediale AI */
+@media (max-width: 680px) {
+  #ediale-ai-widget {
+    position: fixed !important;
+    right: 12px !important;
+    bottom: 12px !important;
+    left: auto !important;
+    top: auto !important;
+    width: max-content !important;
+    max-width: calc(100vw - 24px) !important;
+    transform: none !important;
+    z-index: 2147483647 !important;
+  }
+
+  #ediale-chat-button {
+    position: relative !important;
+    max-width: 100% !important;
+  }
+
+  #ediale-chat-box {
+    right: 0 !important;
+    left: auto !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+}
