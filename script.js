@@ -1,22 +1,11 @@
-/* =========================================
-   EDIALE PORTFOLIO — MAIN JAVASCRIPT
-   ========================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
-
-  /* =========================================
-     1. MOBILE NAVIGATION MENU
-     ========================================= */
-
+  /* MOBILE NAVIGATION */
   const menuToggle = document.getElementById("menu-toggle");
   const navLinks = document.getElementById("nav-links");
 
   if (menuToggle && navLinks) {
-    menuToggle.setAttribute("aria-expanded", "false");
-
     menuToggle.addEventListener("click", (event) => {
       event.preventDefault();
-      event.stopPropagation();
 
       const isOpen = navLinks.classList.toggle("is-open");
 
@@ -42,16 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
       ) {
         navLinks.classList.remove("is-open");
         menuToggle.setAttribute("aria-expanded", "false");
-        menuToggle.setAttribute("aria-label", "Open navigation menu");
       }
     });
   }
 
-
-  /* =========================================
-     2. LIGHT AND DARK THEME TOGGLE
-     ========================================= */
-
+  /* THEME TOGGLE */
   const themeToggle = document.getElementById("theme-toggle");
 
   function applyTheme(theme) {
@@ -67,7 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
           : "Switch to light theme"
       );
 
-      themeToggle.setAttribute("aria-pressed", String(theme === "light"));
+      themeToggle.setAttribute(
+        "aria-pressed",
+        String(theme === "light")
+      );
     }
   }
 
@@ -75,16 +62,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   try {
     savedTheme = localStorage.getItem("edialeTheme") || "dark";
-  } catch (error) {
+  } catch (_) {
     savedTheme = "dark";
   }
 
   applyTheme(savedTheme);
 
   if (themeToggle) {
-    themeToggle.addEventListener("click", (event) => {
-      event.preventDefault();
-
+    themeToggle.addEventListener("click", () => {
       const nextTheme = document.body.classList.contains("light-theme")
         ? "dark"
         : "light";
@@ -93,28 +78,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         localStorage.setItem("edialeTheme", nextTheme);
-      } catch (error) {
-        // Theme switching still works if storage is unavailable.
+      } catch (_) {
+        // Saving the theme is optional.
       }
     });
   }
 
-
-  /* =========================================
-     3. AUTOMATIC FOOTER YEAR
-     ========================================= */
-
+  /* AUTOMATIC COPYRIGHT YEAR */
   const currentYear = document.getElementById("current-year");
 
   if (currentYear) {
     currentYear.textContent = new Date().getFullYear();
   }
 
-
-  /* =========================================
-     4. CONTACT FORM
-     ========================================= */
-
+  /* CONTACT FORM */
   const contactForm = document.getElementById("contact-form");
   const contactStatus = document.getElementById("contact-status");
   const contactSubmit = document.getElementById("contact-submit");
@@ -123,11 +100,9 @@ document.addEventListener("DOMContentLoaded", () => {
     contactForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      if (!contactForm.reportValidity()) {
-        return;
-      }
+      if (!contactForm.reportValidity()) return;
 
-      const originalButtonText = contactSubmit
+      const originalText = contactSubmit
         ? contactSubmit.textContent
         : "Send Message";
 
@@ -159,8 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         contactForm.reset();
-
-      } catch (error) {
+      } catch (_) {
         if (contactStatus) {
           contactStatus.textContent =
             "Sorry, your message could not be sent. Please try again.";
@@ -168,17 +142,14 @@ document.addEventListener("DOMContentLoaded", () => {
       } finally {
         if (contactSubmit) {
           contactSubmit.disabled = false;
-          contactSubmit.textContent = originalButtonText;
+          contactSubmit.textContent = originalText;
         }
       }
     });
   }
 
-
-  /* =========================================
-     5. EDIALE AI CHAT
-     ========================================= */
-
+  /* EDIALE AI CHATBOT */
+  const widget = document.getElementById("ediale-ai-widget");
   const chatButton = document.getElementById("ediale-chat-button");
   const chatBox = document.getElementById("ediale-chat-box");
   const chatClose = document.getElementById("ediale-chat-close");
@@ -191,6 +162,58 @@ document.addEventListener("DOMContentLoaded", () => {
   const AI_ENDPOINT =
     "https://ediale-portfolio-ai.edialeeghonghon.workers.dev";
 
+  /*
+    Move the widget directly under body if it has been placed
+    inside another element. This avoids transformed ancestors
+    interfering with fixed positioning.
+  */
+  if (widget && widget.parentElement !== document.body) {
+    document.body.appendChild(widget);
+  }
+
+  /*
+    Position the button and chat window independently.
+    This is important: the outer widget is not used as the
+    positioning container for the fixed button or chat window.
+  */
+  function positionChat() {
+    if (!chatButton || !chatBox) return;
+
+    const mobile = window.matchMedia("(max-width: 680px)").matches;
+
+    Object.assign(chatButton.style, {
+      position: "fixed",
+      right: "max(12px, env(safe-area-inset-right))",
+      bottom: "max(12px, env(safe-area-inset-bottom))",
+      left: "auto",
+      top: "auto",
+      zIndex: "2147483000",
+      maxWidth: "calc(100vw - 24px)",
+      transform: "none"
+    });
+
+    Object.assign(chatBox.style, {
+      position: "fixed",
+      right: "max(12px, env(safe-area-inset-right))",
+      left: "auto",
+      top: "auto",
+      bottom: mobile
+        ? "calc(max(12px, env(safe-area-inset-bottom)) + 60px)"
+        : "calc(max(16px, env(safe-area-inset-bottom)) + 70px)",
+      zIndex: "2147482999",
+      maxWidth: "calc(100vw - 24px)"
+    });
+  }
+
+  positionChat();
+
+  window.addEventListener("resize", positionChat);
+  window.addEventListener("orientationchange", positionChat);
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", positionChat);
+  }
+
   function openChat() {
     if (!chatBox) return;
 
@@ -200,6 +223,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (chatButton) {
       chatButton.setAttribute("aria-expanded", "true");
     }
+
+    positionChat();
 
     if (chatInput) {
       setTimeout(() => chatInput.focus(), 100);
@@ -235,17 +260,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function addChatMessage(message, sender) {
-    if (!chatMessages) return;
+    if (!chatMessages) return null;
 
-    const messageElement = document.createElement("div");
+    const element = document.createElement("div");
 
-    messageElement.className = `chat-message ${sender}`;
-    messageElement.textContent = message;
+    element.className = `chat-message ${sender}`;
+    element.textContent = message;
 
-    chatMessages.appendChild(messageElement);
+    chatMessages.appendChild(element);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
-    return messageElement;
+    return element;
   }
 
   function getAIReply(data) {
@@ -267,11 +292,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function sendChatMessage(message) {
-    const cleanedMessage = message.trim();
+    const cleaned = message.trim();
 
-    if (!cleanedMessage) return;
+    if (!cleaned) return;
 
-    addChatMessage(cleanedMessage, "user");
+    addChatMessage(cleaned, "user");
 
     if (chatInput) {
       chatInput.value = "";
@@ -281,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
       chatSend.disabled = true;
     }
 
-    const loadingMessage = addChatMessage(
+    const loading = addChatMessage(
       "Ediale AI is thinking...",
       "assistant"
     );
@@ -293,25 +318,25 @@ document.addEventListener("DOMContentLoaded", () => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          message: cleanedMessage
+          message: cleaned
         })
       });
 
       if (!response.ok) {
-        throw new Error("AI service is temporarily unavailable.");
+        throw new Error("AI service unavailable");
       }
 
       const data = await response.json();
       const reply = getAIReply(data);
 
-      if (loadingMessage) {
-        loadingMessage.textContent = reply ||
+      if (loading) {
+        loading.textContent =
+          reply ||
           "I received your message, but couldn't find a response. Please try again.";
       }
-
-    } catch (error) {
-      if (loadingMessage) {
-        loadingMessage.textContent =
+    } catch (_) {
+      if (loading) {
+        loading.textContent =
           "Sorry, Ediale AI couldn't connect. Please try again in a moment.";
       }
     } finally {
@@ -323,7 +348,11 @@ document.addEventListener("DOMContentLoaded", () => {
         chatMessages.scrollTop = chatMessages.scrollHeight;
       }
 
-      if (chatInput && chatBox && chatBox.classList.contains("is-open")) {
+      if (
+        chatInput &&
+        chatBox &&
+        chatBox.classList.contains("is-open")
+      ) {
         chatInput.focus();
       }
     }
@@ -333,21 +362,20 @@ document.addEventListener("DOMContentLoaded", () => {
     chatForm.addEventListener("submit", (event) => {
       event.preventDefault();
 
-      if (!chatInput) return;
-
-      sendChatMessage(chatInput.value);
+      if (chatInput) {
+        sendChatMessage(chatInput.value);
+      }
     });
   }
 
   if (chatSuggestions) {
     chatSuggestions.addEventListener("click", (event) => {
-      const suggestion = event.target.closest("button");
+      const button = event.target.closest("button");
 
-      if (!suggestion) return;
+      if (!button) return;
 
       const message =
-        suggestion.dataset.message ||
-        suggestion.textContent.trim();
+        button.dataset.message || button.textContent.trim();
 
       if (message) {
         openChat();
@@ -355,67 +383,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-
 });
-
-
-
-
-
-
-
-
-/* Keep Ediale AI attached to the mobile viewport */
-(function () {
-  function fixEdialeAssistant() {
-    const widget = document.getElementById("ediale-ai-widget");
-    const button = document.getElementById("ediale-chat-button");
-    const chatBox = document.getElementById("ediale-chat-box");
-
-    if (!widget || !button || !chatBox) return;
-
-    // Move the widget directly under <body>
-    if (widget.parentElement !== document.body) {
-      document.body.appendChild(widget);
-    }
-
-    // Keep the widget at the bottom-right of the visible screen
-    Object.assign(widget.style, {
-      position: "fixed",
-      right: "12px",
-      bottom: "12px",
-      left: "auto",
-      top: "auto",
-      width: "auto",
-      height: "auto",
-      margin: "0",
-      padding: "0",
-      transform: "none",
-      zIndex: "2147483000",
-      pointerEvents: "none"
-    });
-
-    Object.assign(button.style, {
-      position: "relative",
-      display: "inline-flex",
-      maxWidth: "calc(100vw - 24px)",
-      pointerEvents: "auto"
-    });
-
-    Object.assign(chatBox.style, {
-      position: "absolute",
-      right: "0",
-      left: "auto",
-      bottom: "calc(100% + 12px)",
-      maxWidth: "calc(100vw - 24px)"
-    });
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", fixEdialeAssistant);
-  } else {
-    fixEdialeAssistant();
-  }
-
-  window.addEventListener("resize", fixEdialeAssistant);
-})();
