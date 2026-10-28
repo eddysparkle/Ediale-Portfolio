@@ -1,169 +1,177 @@
-// =========================
-// SCROLL REVEAL
-// =========================
-const elements = document.querySelectorAll(
-  ".section, .project, .skill, .contact"
-);
+/* =========================================
+   EDIALE PORTFOLIO — MAIN JAVASCRIPT
+   ========================================= */
 
-function revealOnScroll() {
-  const screenHeight = window.innerHeight;
+document.addEventListener("DOMContentLoaded", () => {
+  /* -----------------------------------------
+     1. MOBILE NAVIGATION
+  ----------------------------------------- */
 
-  elements.forEach(function (element) {
-    const position = element.getBoundingClientRect().top;
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
 
-    if (position < screenHeight - 50) {
-      element.classList.add("show");
-    }
-  });
-}
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("is-open");
 
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
-revealOnScroll();
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
 
-setTimeout(function () {
-  elements.forEach(function (element) {
-    element.classList.add("show");
-  });
-}, 1200);
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+      );
+    });
 
-
-// =========================
-// THEME TOGGLE (brightness)
-// =========================
-const themeButton = document.querySelector("#theme-toggle");
-
-if (themeButton) {
-  themeButton.addEventListener("click", function () {
-    document.body.classList.toggle("light-mode");
-
-    if (document.body.classList.contains("light-mode")) {
-      themeButton.textContent = "🌙";
-    } else {
-      themeButton.textContent = "☀️";
-    }
-  });
-}
-
-
-// =========================
-// CONTACT FORM
-// =========================
-const contactForm = document.querySelector("#contact-form");
-const formMessage = document.querySelector("#form-message");
-
-if (contactForm && formMessage) {
-  contactForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
-
-    const nameField = document.querySelector("#name");
-    const emailField = document.querySelector("#email");
-    const messageField = document.querySelector("#message");
-
-    const name = nameField ? nameField.value.trim() : "";
-    const email = emailField ? emailField.value.trim() : "";
-    const message = messageField ? messageField.value.trim() : "";
-
-    if (name === "" || email === "" || message === "") {
-      formMessage.textContent = "Please complete all fields.";
-      formMessage.style.color = "#f87171";
-      return;
-    }
-
-    formMessage.textContent = "Sending...";
-    formMessage.style.color = "#a78bfa";
-
-    try {
-      const response = await fetch(contactForm.action, {
-        method: "POST",
-        body: new FormData(contactForm),
-        headers: { Accept: "application/json" }
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
       });
+    });
 
-      if (response.ok) {
-        formMessage.textContent =
-          "Message sent successfully! I'll get back to you soon.";
-        formMessage.style.color = "#86efac";
+    document.addEventListener("click", (event) => {
+      const clickedInsideMenu = navLinks.contains(event.target);
+      const clickedToggle = menuToggle.contains(event.target);
+
+      if (!clickedInsideMenu && !clickedToggle) {
+        navLinks.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+      }
+    });
+  }
+
+
+  /* -----------------------------------------
+     2. LIGHT AND DARK THEME
+  ----------------------------------------- */
+
+  const themeToggle = document.getElementById("theme-toggle");
+
+  function applyTheme(theme) {
+    document.body.classList.toggle("light-theme", theme === "light");
+
+    if (themeToggle) {
+      themeToggle.textContent = theme === "light" ? "☀" : "◐";
+
+      themeToggle.setAttribute(
+        "aria-label",
+        theme === "light"
+          ? "Switch to dark theme"
+          : "Switch to light theme"
+      );
+    }
+  }
+
+  let savedTheme = "dark";
+
+  try {
+    savedTheme = localStorage.getItem("edialeTheme") || "dark";
+  } catch (error) {
+    savedTheme = "dark";
+  }
+
+  applyTheme(savedTheme);
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const nextTheme = document.body.classList.contains("light-theme")
+        ? "dark"
+        : "light";
+
+      applyTheme(nextTheme);
+
+      try {
+        localStorage.setItem("edialeTheme", nextTheme);
+      } catch (error) {
+        // The theme still works if browser storage is unavailable.
+      }
+    });
+  }
+
+
+  /* -----------------------------------------
+     3. AUTOMATIC FOOTER YEAR
+  ----------------------------------------- */
+
+  const currentYear = document.getElementById("current-year");
+
+  if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
+  }
+
+
+  /* -----------------------------------------
+     4. CONTACT FORM
+  ----------------------------------------- */
+
+  const contactForm = document.getElementById("contact-form");
+  const contactStatus = document.getElementById("contact-status");
+  const contactSubmit = document.getElementById("contact-submit");
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!contactForm.reportValidity()) {
+        return;
+      }
+
+      const originalButtonText = contactSubmit
+        ? contactSubmit.textContent
+        : "Send Message";
+
+      if (contactSubmit) {
+        contactSubmit.disabled = true;
+        contactSubmit.textContent = "Sending...";
+      }
+
+      if (contactStatus) {
+        contactStatus.textContent = "Sending your message...";
+      }
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: "POST",
+          body: new FormData(contactForm),
+          headers: {
+            Accept: "application/json"
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error("The message could not be sent.");
+        }
+
+        if (contactStatus) {
+          contactStatus.textContent =
+            "Thank you! Your message has been sent successfully.";
+        }
+
         contactForm.reset();
 
-        setTimeout(function () {
-          formMessage.textContent = "";
-        }, 4000);
-      } else {
-        formMessage.textContent = "Something went wrong. Please try again.";
-        formMessage.style.color = "#f87171";
+      } catch (error) {
+        if (contactStatus) {
+          contactStatus.textContent =
+            "Sorry, the message could not be sent. Please try again later.";
+        }
+
+      } finally {
+        if (contactSubmit) {
+          contactSubmit.disabled = false;
+          contactSubmit.textContent = originalButtonText;
+        }
       }
-    } catch (error) {
-      formMessage.textContent =
-        "Unable to send the message. Please try again.";
-      formMessage.style.color = "#f87171";
-    }
-  });
-}
-
-
-// =========================
-// MOBILE NAV MENU
-// =========================
-const menuToggle = document.getElementById("menu-toggle");
-const navLinks = document.getElementById("nav-links");
-
-if (menuToggle && navLinks) {
-  function closeMenu() {
-    navLinks.classList.remove("active");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.textContent = "☰";
+    });
   }
 
-  menuToggle.addEventListener("click", function (event) {
-    event.stopPropagation();
 
-    const isOpen = navLinks.classList.toggle("active");
-    menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    menuToggle.textContent = isOpen ? "✕" : "☰";
-  });
+  /* -----------------------------------------
+     5. EDIALE AI CHAT ELEMENTS
+  ----------------------------------------- */
 
-  navLinks.querySelectorAll("a").forEach(function (link) {
-    link.addEventListener("click", function () {
-      closeMenu();
-    });
-  });
-
-  document.addEventListener("click", function (event) {
-    if (!navLinks.classList.contains("active")) return;
-
-    const clickedInsideMenu = navLinks.contains(event.target);
-    const clickedButton = menuToggle.contains(event.target);
-
-    if (!clickedInsideMenu && !clickedButton) {
-      closeMenu();
-    }
-  });
-}
-
-
-// =========================
-// SCRIPT SAMPLE TOGGLE
-// (needed for onclick="toggleScript(...)")
-// =========================
-function toggleScript(id) {
-  const script = document.getElementById(id);
-  if (!script) return;
-
-  if (script.classList.contains("open")) {
-    script.classList.remove("open");
-  } else {
-    document.querySelectorAll(".script-full.open").forEach(function (item) {
-      item.classList.remove("open");
-    });
-
-    script.classList.add("open");
-
-    setTimeout(function () {
-      script.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }, 100);
-  }
-}
+  const chatButton = document.getElementById("ediale-chat-button");
+  const chatBox = document.getElementById("ediale-chat-box");
+  const chatClose = document.getElementById("ediale-chat-close");
+  const chatForm = document.getElementById("ed
