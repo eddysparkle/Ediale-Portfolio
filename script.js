@@ -357,3 +357,65 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
+
+
+
+
+
+
+
+/* Keep Ediale AI attached to the mobile viewport */
+(function () {
+  function fixEdialeAssistant() {
+    const widget = document.getElementById("ediale-ai-widget");
+    const button = document.getElementById("ediale-chat-button");
+    const chatBox = document.getElementById("ediale-chat-box");
+
+    if (!widget || !button || !chatBox) return;
+
+    // Move the widget directly under <body>
+    if (widget.parentElement !== document.body) {
+      document.body.appendChild(widget);
+    }
+
+    // Keep the widget at the bottom-right of the visible screen
+    Object.assign(widget.style, {
+      position: "fixed",
+      right: "12px",
+      bottom: "12px",
+      left: "auto",
+      top: "auto",
+      width: "auto",
+      height: "auto",
+      margin: "0",
+      padding: "0",
+      transform: "none",
+      zIndex: "2147483000",
+      pointerEvents: "none"
+    });
+
+    Object.assign(button.style, {
+      position: "relative",
+      display: "inline-flex",
+      maxWidth: "calc(100vw - 24px)",
+      pointerEvents: "auto"
+    });
+
+    Object.assign(chatBox.style, {
+      position: "absolute",
+      right: "0",
+      left: "auto",
+      bottom: "calc(100% + 12px)",
+      maxWidth: "calc(100vw - 24px)"
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", fixEdialeAssistant);
+  } else {
+    fixEdialeAssistant();
+  }
+
+  window.addEventListener("resize", fixEdialeAssistant);
+})();
