@@ -921,3 +921,107 @@ body.light-theme .project-visual {
     width: 100%;
   }
 }
+
+
+
+
+
+/* =========================================================
+   EDIALE AI – same approach as Savouré WhatsApp button
+   ========================================================= */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+#ediale-ai-widget {
+  position: static !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  pointer-events: none !important;
+}
+
+/* Match Savouré .whatsapp-float */
+#ediale-chat-button {
+  position: fixed !important;
+  right: 22px !important;
+  bottom: 22px !important;
+  left: auto !important;
+  top: auto !important;
+
+  width: 56px !important;
+  height: 56px !important;
+  min-width: 56px !important;
+  min-height: 56px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border: none !important;
+  border-radius: 50% !important;
+  background: #25d366 !important;
+  color: #fff !important;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35) !important;
+
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+  cursor: pointer !important;
+}
+
+#ediale-chat-button:hover {
+  transform: scale(1.06) !important;
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45) !important;
+}
+
+#ediale-chat-button .chat-button-icon {
+  display: block !important;
+  font-size: 26px !important;
+  line-height: 1 !important;
+  color: #fff !important;
+}
+
+#ediale-chat-button > span:last-child {
+  display: none !important;
+}
+
+#ediale-chat-box {
+  position: fixed !important;
+  right: 16px !important;
+  bottom: 90px !important;
+  left: auto !important;
+  top: auto !important;
+
+  width: min(360px, calc(100vw - 32px)) !important;
+  max-width: calc(100vw - 32px) !important;
+  max-height: calc(100dvh - 120px) !important;
+
+  z-index: 9998 !important;
+  transform: none !important;
+}
+
+@media (max-width: 680px) {
+  #ediale-chat-button {
+    right: 16px !important;
+    bottom: 16px !important;
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+  }
+
+  #ediale-chat-box {
+    right: 12px !important;
+    bottom: 78px !important;
+    width: calc(100vw - 24px) !important;
+  }
+}
+
