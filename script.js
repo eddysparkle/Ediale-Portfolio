@@ -167,13 +167,51 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(widget);
   }
 
-  // Clear any leftover inline styles that could push the button off-screen
-  if (chatButton) {
-    chatButton.style.cssText = "";
+  // Force button + panel onto the screen (overrides any bad CSS/cache)
+  function forceOnScreen() {
+    if (chatButton) {
+      chatButton.style.cssText = [
+        "position:fixed",
+        "right:16px",
+        "bottom:16px",
+        "left:auto",
+        "top:auto",
+        "width:56px",
+        "height:56px",
+        "min-width:56px",
+        "min-height:56px",
+        "padding:0",
+        "margin:0",
+        "border:none",
+        "border-radius:50%",
+        "background:#25d366",
+        "color:#fff",
+        "display:flex",
+        "align-items:center",
+        "justify-content:center",
+        "z-index:2147483647",
+        "visibility:visible",
+        "opacity:1",
+        "transform:none",
+        "pointer-events:auto"
+      ].join(";");
+    }
+    if (chatBox) {
+      chatBox.style.setProperty("position", "fixed", "important");
+      chatBox.style.setProperty("right", "12px", "important");
+      chatBox.style.setProperty("bottom", "80px", "important");
+      chatBox.style.setProperty("left", "auto", "important");
+      chatBox.style.setProperty("top", "auto", "important");
+      chatBox.style.setProperty("z-index", "2147483646", "important");
+      chatBox.style.setProperty("max-width", "calc(100vw - 24px)", "important");
+      chatBox.style.setProperty("max-height", "calc(100dvh - 100px)", "important");
+      chatBox.style.setProperty("transform", "none", "important");
+    }
   }
-  if (chatBox) {
-    chatBox.style.cssText = "";
-  }
+
+  forceOnScreen();
+  window.addEventListener("resize", forceOnScreen);
+  window.addEventListener("orientationchange", forceOnScreen);
 
   function openChat() {
     if (!chatBox) return;
