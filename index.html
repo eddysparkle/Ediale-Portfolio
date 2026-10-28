@@ -3,164 +3,693 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#07090d">
-  <meta name="description" content="Ediale is a front-end developer building responsive websites and practical JavaScript applications.">
+
+  <meta
+    name="description"
+    content="Ediale is a front-end developer building responsive websites and interactive JavaScript applications."
+  >
+
+  <meta name="theme-color" content="#080b12">
+
   <title>Ediale | Front-End Developer</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="style.css">
+
   <script src="script.js" defer></script>
 </head>
-<body>
-  <div class="ambient ambient-one" aria-hidden="true"></div>
-  <div class="ambient ambient-two" aria-hidden="true"></div>
 
+<body>
+
+  <!-- Background decoration -->
+  <div class="background-glow" aria-hidden="true"></div>
+
+  <!-- Navigation -->
   <header class="site-header">
     <nav class="navbar container" aria-label="Main navigation">
-      <a class="brand" href="#home" aria-label="Ediale home">Ediale<span>.</span></a>
-      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
-        <span></span><span></span><span></span>
+
+      <a href="#home" class="logo" aria-label="Ediale home">
+        Ediale<span>.</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
+
       <div class="nav-links" id="nav-links">
+        <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#writing">Scriptwriting</a>
         <a href="#contact">Contact</a>
-        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme">☼</button>
       </div>
+
+      <button
+        class="theme-toggle"
+        id="theme-toggle"
+        type="button"
+        aria-label="Toggle light and dark theme"
+      >
+        ◐
+      </button>
+
     </nav>
   </header>
 
   <main>
-    <section class="hero section-shell" id="home">
+
+    <!-- Hero section -->
+    <section class="hero section" id="home">
       <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="status-dot"></span> AVAILABLE FOR REMOTE WORK</p>
-          <h1>I build useful, thoughtful <span class="gradient-text">web experiences.</span></h1>
-          <p class="hero-description">I'm Ediale, a front-end developer working with HTML, CSS and JavaScript to create responsive websites and practical web apps.</p>
+
+        <div class="hero-content">
+
+          <p class="availability">
+            <span class="availability-dot"></span>
+            AVAILABLE FOR HIRE
+          </p>
+
+          <p class="eyebrow">FRONT-END DEVELOPER</p>
+
+          <h1>
+            I build digital experiences
+            <span>that work.</span>
+          </h1>
+
+          <p class="hero-description">
+            I'm Ediale, a front-end developer focused on building responsive
+            websites and interactive web applications with HTML, CSS, and
+            JavaScript.
+          </p>
+
           <div class="hero-actions">
-            <a class="button button-primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
-            <a class="button button-secondary" href="#contact">Contact me</a>
+            <a href="#projects" class="button button-primary">
+              Explore My Work
+            </a>
+
+            <a href="#contact" class="button button-secondary">
+              Let's Connect
+            </a>
           </div>
-          <div class="hero-meta"><span>HTML · CSS · JavaScript</span><span>Based in Nigeria · Open to remote work</span></div>
-        </div>
-        <div class="hero-card" aria-label="Developer profile summary">
-          <div class="card-topline"><span class="window-dots"><i></i><i></i><i></i></span><span>developer.profile</span></div>
-          <div class="avatar-mark">E<span>.</span></div>
-          <p class="card-kicker">HELLO, I'M</p>
-          <h2>Ediale</h2>
-          <p class="muted">Front-End Developer</p>
-          <div class="code-lines" aria-hidden="true">
-            <p><span class="code-purple">const</span> developer = {</p>
-            <p class="indent"><span class="code-blue">focus</span>: <span class="code-green">"user experience"</span>,</p>
-            <p class="indent"><span class="code-blue">builds</span>: <span class="code-green">"web apps"</span>,</p>
-            <p class="indent"><span class="code-blue">mindset</span>: <span class="code-green">"always learning"</span></p>
-            <p>};</p>
+
+          <div class="hero-socials">
+            <a
+              href="https://github.com/eddysparkle"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub ↗
+            </a>
+
+            <a
+              href="https://eddysparkle.github.io/Ediale-Portfolio/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Portfolio ↗
+            </a>
           </div>
-          <div class="card-tags"><span>Responsive UI</span><span>JavaScript</span><span>Problem solving</span></div>
+
         </div>
+
+        <div class="hero-card">
+          <div class="code-window">
+
+            <div class="code-window-header">
+              <div class="window-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <span>developer.js</span>
+            </div>
+
+            <div class="code-content">
+              <p><span class="code-purple">const</span> developer = {</p>
+              <p class="code-indent">
+                name: <span class="code-green">'Ediale'</span>,
+              </p>
+              <p class="code-indent">
+                role: <span class="code-green">'Frontend Developer'</span>,
+              </p>
+              <p class="code-indent">
+                skills: [
+              </p>
+              <p class="code-indent code-indent-2">
+                <span class="code-green">'HTML'</span>,
+              </p>
+              <p class="code-indent code-indent-2">
+                <span class="code-green">'CSS'</span>,
+              </p>
+              <p class="code-indent code-indent-2">
+                <span class="code-green">'JavaScript'</span>
+              </p>
+              <p class="code-indent">],</p>
+              <p class="code-indent">
+                mindset: <span class="code-green">'Keep building'</span>
+              </p>
+              <p>};</p>
+
+              <p class="code-comment">
+                // Turning ideas into useful products.
+              </p>
+            </div>
+
+            <div class="code-window-footer">
+              <span>● Ready to build</span>
+              <span>JavaScript</span>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <section class="section-shell" id="about">
-      <div class="container section-inner">
-        <div class="section-heading"><p class="eyebrow">A LITTLE ABOUT ME</p><h2>Curious by nature.<br><span class="gradient-text">Practical by design.</span></h2></div>
+    <!-- About section -->
+    <section class="section" id="about">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">A LITTLE ABOUT ME</p>
+          <h2>Building my way forward.</h2>
+        </div>
+
         <div class="about-content">
-          <p>I'm a Computer Science graduate who enjoys turning ideas into clear, usable digital experiences. I build projects to practise my craft, solve practical problems, and keep growing as a developer.</p>
-          <p>My current focus is front-end development with HTML, CSS and JavaScript, while steadily expanding my knowledge of APIs, Node.js, Express and databases.</p>
-          <div class="about-facts"><div><strong>01</strong><span>Responsive websites</span></div><div><strong>02</strong><span>Interactive applications</span></div><div><strong>03</strong><span>Continuous learning</span></div></div>
+          <p>
+            I'm a Computer Science graduate who enjoys turning ideas into
+            useful, accessible, and responsive web experiences. My work
+            combines practical front-end development with an interest in
+            solving real problems through technology.
+          </p>
+
+          <p>
+            I build projects to strengthen my skills, learn by doing, and
+            create experiences people can actually use. I'm currently
+            developing my knowledge of backend technologies and AI-powered
+            web applications.
+          </p>
         </div>
+
       </div>
     </section>
 
-    <section class="section-shell" id="skills">
-      <div class="container section-inner">
-        <div class="section-heading"><p class="eyebrow">WHAT I WORK WITH</p><h2>Skills &amp; tools</h2><p class="section-description">The tools I use to build and improve web experiences.</p></div>
+    <!-- Skills section -->
+    <section class="section section-alt" id="skills">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">WHAT I WORK WITH</p>
+          <h2>Skills & technologies.</h2>
+          <p>
+            Tools and technologies I'm using to build and improve web
+            applications.
+          </p>
+        </div>
+
         <div class="skills-grid">
-          <article class="skill-card"><span class="skill-icon">⌘</span><h3>Front-end</h3><p>HTML5, CSS3, JavaScript, responsive layouts, DOM manipulation and browser storage.</p><div class="tag-list"><span>HTML</span><span>CSS</span><span>JavaScript</span></div></article>
-          <article class="skill-card"><span class="skill-icon">⌁</span><h3>Web fundamentals</h3><p>Working with JSON, HTTP requests, REST API concepts, forms and client-side validation.</p><div class="tag-list"><span>REST / JSON</span><span>Fetch</span><span>GitHub Pages</span></div></article>
-          <article class="skill-card"><span class="skill-icon">✳</span><h3>Currently learning</h3><p>Building a stronger foundation in Node.js, Express, MongoDB and AI-powered web features.</p><div class="tag-list"><span>Node.js</span><span>Express</span><span>MongoDB</span></div></article>
+
+          <article class="skill-card">
+            <div class="skill-icon">HTML</div>
+            <h3>HTML5</h3>
+            <p>Semantic structure and accessible page layouts.</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">CSS</div>
+            <h3>CSS3</h3>
+            <p>Responsive layouts, styling, and visual design.</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">JS</div>
+            <h3>JavaScript</h3>
+            <p>Interactive features, application logic, and browser storage.</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">API</div>
+            <h3>APIs & JSON</h3>
+            <p>Learning how applications communicate with web services.</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">AI</div>
+            <h3>AI Integration</h3>
+            <p>Exploring AI-powered features for websites and applications.</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">UI</div>
+            <h3>Responsive UI</h3>
+            <p>Designing interfaces for mobile, tablet, and desktop screens.</p>
+          </article>
+
         </div>
+
       </div>
     </section>
 
-    <section class="section-shell" id="projects">
-      <div class="container section-inner">
-        <div class="section-heading section-heading-row"><div><p class="eyebrow">SELECTED WORK</p><h2>Projects I've built</h2></div><p class="section-description">Hands-on projects where I practise interface design, interactivity and useful features.</p></div>
+    <!-- Projects section -->
+    <section class="section" id="projects">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">SELECTED WORK</p>
+          <h2>Projects I've built.</h2>
+          <p>
+            Practical projects that demonstrate my growing development
+            skills.
+          </p>
+        </div>
+
         <div class="projects-grid">
-          <article class="project-card project-featured">
-            <div class="project-art savouré-art"><span class="art-label">SAVOURÉ</span><span class="plate" aria-hidden="true">✦</span><span class="art-caption">A modern restaurant experience</span></div>
-            <div class="project-body"><div class="project-top"><span class="project-type">Restaurant website</span><span class="project-number">01</span></div><h3>Savouré</h3><p>A polished restaurant website with a menu, custom meal builder, order summary and contact options.</p><div class="tag-list"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><div class="project-links"><a href="https://eddysparkle.github.io/savoure-restaurant/" target="_blank" rel="noopener noreferrer">Live demo ↗</a><a href="https://github.com/eddysparkle/savoure-restaurant" target="_blank" rel="noopener noreferrer">Source code ↗</a></div></div>
-          </article>
+
+          <!-- Savouré -->
           <article class="project-card">
-            <div class="project-art expense-art"><span class="art-symbol" aria-hidden="true">↗</span><div><span class="art-label">MONEY OVERVIEW</span><strong>Track your spending.</strong></div></div>
-            <div class="project-body"><div class="project-top"><span class="project-type">JavaScript application</span><span class="project-number">02</span></div><h3>Expense Tracker</h3><p>A personal expense tracker with transaction records, categories, totals and browser-based persistence.</p><div class="tag-list"><span>JavaScript</span><span>localStorage</span><span>CSS</span></div><div class="project-links"><a href="https://eddysparkle.github.io/Expense--Tracker/" target="_blank" rel="noopener noreferrer">Live demo ↗</a><a href="https://github.com/eddysparkle" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div>
+            <div class="project-visual project-restaurant">
+              <span class="project-number">01</span>
+              <span class="project-visual-label">SAVOURÉ</span>
+            </div>
+
+            <div class="project-body">
+              <p class="project-category">RESTAURANT WEBSITE</p>
+              <h3>Savouré</h3>
+
+              <p>
+                A restaurant website featuring a food menu, meal selection,
+                order summary, and customer contact options.
+              </p>
+
+              <div class="project-tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+              </div>
+
+              <div class="project-links">
+                <a
+                  href="https://eddysparkle.github.io/savoure-restaurant/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Live Demo ↗
+                </a>
+
+                <a
+                  href="https://github.com/eddysparkle/savoure-restaurant"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Source Code ↗
+                </a>
+              </div>
+            </div>
           </article>
+
+          <!-- Expense Tracker -->
           <article class="project-card">
-            <div class="project-art task-art"><span class="task-check" aria-hidden="true">✓</span><div><span class="art-label">TODAY'S FOCUS</span><strong>One task at a time.</strong></div></div>
-            <div class="project-body"><div class="project-top"><span class="project-type">Productivity app</span><span class="project-number">03</span></div><h3>Task Manager</h3><p>A lightweight task manager for organising to-dos and keeping task data in the browser.</p><div class="tag-list"><span>HTML</span><span>CSS</span><span>JavaScript</span></div><div class="project-links"><a href="https://eddysparkle.github.io/ediale-task-manager/" target="_blank" rel="noopener noreferrer">Live demo ↗</a><a href="https://github.com/eddysparkle" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div>
+            <div class="project-visual project-expense">
+              <span class="project-number">02</span>
+              <span class="project-visual-label">EXPENSE TRACKER</span>
+            </div>
+
+            <div class="project-body">
+              <p class="project-category">FINANCE WEB APP</p>
+              <h3>Expense Tracker</h3>
+
+              <p>
+                A personal finance application for recording transactions
+                and keeping track of expenses in Nigerian naira.
+              </p>
+
+              <div class="project-tags">
+                <span>JavaScript</span>
+                <span>Local Storage</span>
+                <span>CSS</span>
+              </div>
+
+              <div class="project-links">
+                <a
+                  href="https://eddysparkle.github.io/Expense--Tracker/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Live Demo ↗
+                </a>
+
+                <a
+                  href="https://github.com/eddysparkle"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+            </div>
           </article>
+
+          <!-- Task Manager -->
           <article class="project-card">
-            <div class="project-art portfolio-art"><span class="portfolio-brackets" aria-hidden="true">&lt;/&gt;</span><div><span class="art-label">PERSONAL BRAND</span><strong>My work, in one place.</strong></div></div>
-            <div class="project-body"><div class="project-top"><span class="project-type">Portfolio website</span><span class="project-number">04</span></div><h3>Developer Portfolio</h3><p>A responsive portfolio to introduce my work, share projects and make it easy to contact me.</p><div class="tag-list"><span>Responsive design</span><span>CSS</span><span>JavaScript</span></div><div class="project-links"><a href="https://eddysparkle.github.io/Ediale-Portfolio/" target="_blank" rel="noopener noreferrer">Live demo ↗</a><a href="https://github.com/eddysparkle" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div>
+            <div class="project-visual project-task">
+              <span class="project-number">03</span>
+              <span class="project-visual-label">TASK MANAGER</span>
+            </div>
+
+            <div class="project-body">
+              <p class="project-category">PRODUCTIVITY APP</p>
+              <h3>Task Manager</h3>
+
+              <p>
+                A task management application for organising everyday
+                activities and saving tasks in the browser.
+              </p>
+
+              <div class="project-tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+              </div>
+
+              <div class="project-links">
+                <a
+                  href="https://eddysparkle.github.io/ediale-task-manager/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Live Demo ↗
+                </a>
+
+                <a
+                  href="https://github.com/eddysparkle"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+            </div>
           </article>
+
+          <!-- Portfolio -->
+          <article class="project-card">
+            <div class="project-visual project-portfolio">
+              <span class="project-number">04</span>
+              <span class="project-visual-label">MY PORTFOLIO</span>
+            </div>
+
+            <div class="project-body">
+              <p class="project-category">PERSONAL WEBSITE</p>
+              <h3>Developer Portfolio</h3>
+
+              <p>
+                My portfolio showcasing selected projects, development
+                skills, and writing samples.
+              </p>
+
+              <div class="project-tags">
+                <span>Web Design</span>
+                <span>HTML</span>
+                <span>CSS</span>
+              </div>
+
+              <div class="project-links">
+                <a
+                  href="https://eddysparkle.github.io/Ediale-Portfolio/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Portfolio ↗
+                </a>
+
+                <a
+                  href="https://github.com/eddysparkle/Ediale-Portfolio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Source Code ↗
+                </a>
+              </div>
+            </div>
+          </article>
+
         </div>
+
       </div>
     </section>
 
-    <section class="section-shell" id="writing">
-      <div class="container section-inner writing-layout">
-        <div class="section-heading"><p class="eyebrow">ANOTHER CREATIVE INTEREST</p><h2>Scriptwriting &amp; storytelling</h2><p class="section-description">I also explore research-led scripts for YouTube, short-form content, promotional videos and storytelling.</p></div>
-        <div class="writing-cards">
-          <article class="writing-card"><span class="writing-number">SCRIPT 01</span><h3>The Psychology of Procrastination</h3><p>A research-inspired look at why we delay tasks and how small actions can help us start.</p></article>
-          <article class="writing-card"><span class="writing-number">SCRIPT 02</span><h3>3 Signs You're Wasting Your Time</h3><p>A short-form concept built around relatable habits, clear pacing and actionable takeaways.</p></article>
+    <!-- Scriptwriting section -->
+    <section class="section section-alt" id="writing">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">BEYOND CODE</p>
+          <h2>Scriptwriting & storytelling.</h2>
+          <p>
+            I also explore research-driven writing and scripts designed
+            to communicate ideas clearly and hold attention.
+          </p>
         </div>
+
+        <div class="writing-grid">
+
+          <article class="writing-card">
+            <span class="writing-label">PSYCHOLOGY</span>
+            <h3>The Psychology of Procrastination</h3>
+            <p>
+              A script exploring why people delay important tasks and
+              how understanding the habit can help them take action.
+            </p>
+          </article>
+
+          <article class="writing-card">
+            <span class="writing-label">PERSONAL DEVELOPMENT</span>
+            <h3>3 Signs You're Wasting Your Time</h3>
+            <p>
+              A short-form script focused on habits, awareness, and
+              making better use of everyday time.
+            </p>
+          </article>
+
+        </div>
+
       </div>
     </section>
 
-    <section class="section-shell" id="contact">
-      <div class="container section-inner contact-layout">
-        <div class="section-heading"><p class="eyebrow">LET'S CONNECT</p><h2>Have a project<br><span class="gradient-text">in mind?</span></h2><p class="section-description">Tell me what you're building or what kind of help you need. I'll get back to you as soon as I can.</p><div class="contact-direct"><span class="contact-icon">✉</span><div><small>Prefer a message?</small><a href="mailto:hello@ediale.dev">Contact me by email</a></div></div></div>
-        <form class="contact-form" id="contact-form" action="https://formspree.io/f/xvzqappg" method="POST">
-          <label for="name">Your name</label><input id="name" name="name" type="text" placeholder="Jane Smith" autocomplete="name" required>
-          <label for="email">Email address</label><input id="email" name="email" type="email" placeholder="jane@example.com" autocomplete="email" required>
-          <label for="message">How can I help?</label><textarea id="message" name="message" rows="5" placeholder="Tell me a little about your project..." required></textarea>
-          <button class="button button-primary form-submit" type="submit">Send message <span aria-hidden="true">↗</span></button>
-          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-        </form>
+    <!-- Contact section -->
+    <section class="section" id="contact">
+      <div class="container">
+
+        <div class="contact-panel">
+
+          <p class="eyebrow">LET'S WORK TOGETHER</p>
+
+          <h2>Have a project in mind?</h2>
+
+          <p>
+            I'm open to opportunities to build websites, improve user
+            experiences, and contribute to useful digital products.
+          </p>
+
+          <form
+            id="contact-form"
+            action="https://formspree.io/f/xvzqappg"
+            method="POST"
+          >
+
+            <div class="form-row">
+              <label for="contact-name">Your name</label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                placeholder="Enter your name"
+                required
+              >
+            </div>
+
+            <div class="form-row">
+              <label for="contact-email">Your email</label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                placeholder="you@example.com"
+                required
+              >
+            </div>
+
+            <div class="form-row">
+              <label for="contact-message">Your message</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="5"
+                placeholder="Tell me about your project..."
+                required
+              ></textarea>
+            </div>
+
+            <button
+              class="button button-primary"
+              id="contact-submit"
+              type="submit"
+            >
+              Send Message
+            </button>
+
+            <p
+              class="form-status"
+              id="contact-status"
+              role="status"
+              aria-live="polite"
+            ></p>
+
+          </form>
+
+          <a
+            class="github-contact"
+            href="https://github.com/eddysparkle"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Find me on GitHub ↗
+          </a>
+
+        </div>
+
       </div>
     </section>
+
   </main>
 
-  <footer class="site-footer"><div class="container footer-inner"><a class="brand" href="#home">Ediale<span>.</span></a><p>Building, learning, and improving one project at a time.</p><span>© <span id="current-year"></span> Ediale</span></div></footer>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <a href="#home" class="logo">Ediale<span>.</span></a>
 
-  <!-- Chat widget: kept as a direct child of body so fixed positioning works reliably. -->
-  <button id="ediale-chat-button" type="button" aria-controls="ediale-chat-box" aria-expanded="false">
-    <span class="chat-button-sparkle" aria-hidden="true">✦</span><span>Ediale AI</span>
-  </button>
+      <p>
+        Designed and built by Ediale.
+        <span id="current-year">2026</span>
+      </p>
 
-  <section id="ediale-chat-box" role="dialog" aria-modal="false" aria-labelledby="ediale-chat-title" aria-hidden="true">
-    <header class="chat-header">
-      <div class="chat-avatar" aria-hidden="true">E<span>.</span></div>
-      <div class="chat-heading"><strong id="ediale-chat-title">Ediale AI</strong><span><i class="chat-online-dot"></i> Portfolio assistant</span></div>
-      <button id="ediale-chat-close" class="chat-close" type="button" aria-label="Close chat">×</button>
-    </header>
-    <div id="ediale-chat-messages" class="chat-messages" aria-live="polite" aria-label="Chat messages">
-      <div class="chat-message assistant-message"><p>Hi! I'm Ediale AI. Ask me about Ediale's projects, skills, or web development work.</p></div>
+      <a href="#home">Back to top ↑</a>
     </div>
-    <div class="chat-suggestions" id="chat-suggestions">
-      <button type="button" data-prompt="Tell me about your projects">Projects</button>
-      <button type="button" data-prompt="What technologies do you use?">Tech stack</button>
-      <button type="button" data-prompt="How can I contact Ediale?">Contact</button>
-    </div>
-    <form id="ediale-chat-form" class="chat-form">
-      <label class="visually-hidden" for="ediale-chat-input">Message Ediale AI</label>
-      <input id="ediale-chat-input" name="message" type="text" placeholder="Ask me something..." autocomplete="off" maxlength="1000" required>
-      <button id="ediale-chat-send" type="submit" aria-label="Send message">↑</button>
-    </form>
-    <p class="chat-disclaimer">AI can make mistakes. Please verify important details.</p>
-  </section>
+  </footer>
+
+  <!-- Ediale AI Chat Widget -->
+  <!-- Keep this directly inside body, outside main and section elements. -->
+  <div id="ediale-ai-widget">
+
+    <button
+      id="ediale-chat-button"
+      type="button"
+      aria-label="Chat with Ediale AI"
+      aria-controls="ediale-chat-box"
+      aria-expanded="false"
+    >
+      <span class="chat-button-icon" aria-hidden="true">✦</span>
+      <span>Ediale AI</span>
+    </button>
+
+    <section
+      id="ediale-chat-box"
+      role="dialog"
+      aria-label="Chat with Ediale AI"
+      aria-modal="false"
+    >
+
+      <div class="chat-header">
+
+        <div class="chat-header-info">
+          <div class="chat-avatar" aria-hidden="true">E</div>
+
+          <div>
+            <h2>Ediale AI</h2>
+            <p>
+              <span class="chat-online-dot"></span>
+              Here to help
+            </p>
+          </div>
+        </div>
+
+        <button
+          id="ediale-chat-close"
+          class="chat-close"
+          type="button"
+          aria-label="Close chat"
+        >
+          &times;
+        </button>
+
+      </div>
+
+      <div
+        id="ediale-chat-messages"
+        class="chat-messages"
+        aria-live="polite"
+        aria-relevant="additions"
+      >
+        <div class="chat-message bot-message">
+          Hi! 👋 I'm Ediale AI. Ask me about Ediale's projects, skills,
+          or development work.
+        </div>
+      </div>
+
+      <div id="chat-suggestions" class="chat-suggestions">
+        <button type="button" data-message="Tell me about Ediale's projects">
+          Projects
+        </button>
+
+        <button type="button" data-message="What technologies does Ediale use?">
+          Skills
+        </button>
+      </div>
+
+      <form id="ediale-chat-form" class="chat-input-form">
+
+        <input
+          id="ediale-chat-input"
+          type="text"
+          name="message"
+          placeholder="Ask Ediale AI..."
+          aria-label="Your message"
+          autocomplete="off"
+          required
+        >
+
+        <button
+          id="ediale-chat-send"
+          type="submit"
+          aria-label="Send message"
+        >
+          ↑
+        </button>
+
+      </form>
+
+      <p class="chat-footer-note">Powered by AI</p>
+
+    </section>
+
+  </div>
+
 </body>
 </html>
