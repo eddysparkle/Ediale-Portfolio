@@ -1362,3 +1362,72 @@ body.light-theme #ediale-chat-box {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+/* EDIALE AI — FLOATING WHATSAPP-STYLE BUTTON */
+
+#ediale-ai-widget {
+  position: fixed !important;
+  right: 16px !important;
+  bottom: 16px !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: 99999 !important;
+  width: auto !important;
+  max-width: calc(100vw - 32px) !important;
+}
+
+/* Keep the floating button on-screen */
+#ediale-chat-button {
+  position: fixed !important;
+  right: 16px !important;
+  bottom: 16px !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: 100000 !important;
+  max-width: calc(100vw - 32px) !important;
+  box-sizing: border-box !important;
+}
+
+/* Keep the chat window inside the screen */
+#ediale-chat-box {
+  position: fixed !important;
+  right: 16px !important;
+  bottom: 80px !important;
+  left: auto !important;
+  top: auto !important;
+  width: min(350px, calc(100vw - 32px)) !important;
+  max-width: calc(100vw - 32px) !important;
+  max-height: 70vh !important;
+  box-sizing: border-box !important;
+  z-index: 99999 !important;
+}
+
+@media (max-width: 480px) {
+  #ediale-ai-widget {
+    right: 12px !important;
+    bottom: 12px !important;
+  }
+
+  #ediale-chat-button {
+    right: 12px !important;
+    bottom: 12px !important;
+  }
+
+  #ediale-chat-box {
+    right: 12px !important;
+    bottom: 72px !important;
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+    max-height: 70vh !important;
+  }
+}
