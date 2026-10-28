@@ -28,15 +28,17 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
+  width: 100%;
 }
 
 body {
   min-height: 100vh;
-  overflow-x: hidden;
+  width: 100%;
   background: var(--bg);
   color: var(--text);
   font-family: "DM Sans", sans-serif;
   line-height: 1.7;
+  overflow-x: hidden;
   transition: background 0.25s ease, color 0.25s ease;
 }
 
@@ -82,7 +84,7 @@ img {
 
 ::selection {
   background: var(--accent);
-  color: #ffffff;
+  color: #fff;
 }
 
 .container {
@@ -217,6 +219,7 @@ section[id] {
   display: none;
   width: 42px;
   height: 42px;
+  flex-shrink: 0;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--card);
@@ -259,7 +262,7 @@ section[id] {
 
 .button-primary {
   background: var(--accent);
-  color: #ffffff;
+  color: #fff;
 }
 
 .button-primary:hover {
@@ -283,8 +286,7 @@ section[id] {
   min-height: 620px;
   display: flex;
   align-items: center;
-  padding-top: 90px;
-  padding-bottom: 90px;
+  padding: 90px 0;
 }
 
 .hero-grid {
@@ -344,6 +346,7 @@ section[id] {
 
 .hero-socials {
   display: flex;
+  flex-wrap: wrap;
   gap: 22px;
   margin-top: 30px;
 }
@@ -500,9 +503,7 @@ section[id] {
   border: 1px solid var(--border);
   border-radius: 16px;
   background: var(--card);
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .skill-card:hover {
@@ -549,9 +550,7 @@ section[id] {
   border: 1px solid var(--border);
   border-radius: 18px;
   background: var(--card);
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .project-card:hover {
@@ -614,7 +613,7 @@ section[id] {
 .project-visual-label {
   position: relative;
   z-index: 1;
-  color: #ffffff;
+  color: #fff;
   font-family: "Space Grotesk", sans-serif;
   font-size: clamp(1.2rem, 3vw, 2rem);
   font-weight: 700;
@@ -818,24 +817,26 @@ section[id] {
 /* 13. EDIALE AI CHAT WIDGET */
 
 /*
-  The chat widget is fixed to the viewport.
-  It should remain outside the main page sections in index.html.
+  IMPORTANT:
+  Keep #ediale-ai-widget as a direct child of <body> in index.html.
+  This allows the floating button to stay fixed to the viewport.
 */
 
 #ediale-ai-widget {
   position: fixed !important;
-  right: 20px !important;
-  bottom: 20px !important;
+  right: 16px !important;
+  bottom: 16px !important;
   left: auto !important;
   top: auto !important;
-  z-index: 2147483000 !important;
   width: auto !important;
   height: auto !important;
   margin: 0 !important;
   padding: 0 !important;
   overflow: visible !important;
+  transform: none !important;
+  z-index: 2147483000 !important;
   font-family: "DM Sans", sans-serif;
-  pointer-events: none;
+  pointer-events: none !important;
 }
 
 #ediale-ai-widget *,
@@ -844,6 +845,8 @@ section[id] {
   box-sizing: border-box;
 }
 
+/* Floating assistant button */
+
 #ediale-chat-button {
   position: relative !important;
   display: inline-flex !important;
@@ -851,7 +854,8 @@ section[id] {
   justify-content: center !important;
   gap: 9px !important;
   width: auto !important;
-  min-width: 140px !important;
+  min-width: 0 !important;
+  max-width: calc(100vw - 32px) !important;
   min-height: 52px !important;
   height: auto !important;
   margin: 0 !important;
@@ -859,7 +863,7 @@ section[id] {
   border: 1px solid rgba(255, 255, 255, 0.22) !important;
   border-radius: 999px !important;
   background: linear-gradient(135deg, #8b6cff, #6745e8) !important;
-  color: #ffffff !important;
+  color: #fff !important;
   box-shadow: 0 8px 30px rgba(91, 63, 219, 0.4) !important;
   font-family: "DM Sans", sans-serif !important;
   font-size: 14px !important;
@@ -884,18 +888,20 @@ section[id] {
   line-height: 1;
 }
 
+/* Chat window opens above the floating button */
+
 #ediale-chat-box {
   position: absolute !important;
   right: 0 !important;
-  bottom: 66px !important;
+  bottom: calc(100% + 12px) !important;
   left: auto !important;
   top: auto !important;
   display: none !important;
   flex-direction: column !important;
   width: min(370px, calc(100vw - 32px)) !important;
-  height: min(520px, calc(100dvh - 110px)) !important;
-  min-height: 320px !important;
-  max-height: 520px !important;
+  height: min(520px, 70dvh) !important;
+  min-height: 280px !important;
+  max-height: 70dvh !important;
   margin: 0 !important;
   padding: 0 !important;
   overflow: hidden !important;
@@ -940,7 +946,7 @@ section[id] {
   place-items: center;
   border-radius: 50%;
   background: var(--accent);
-  color: #ffffff;
+  color: #fff;
   font-size: 1.2rem;
   font-weight: 700;
 }
@@ -1005,7 +1011,8 @@ section[id] {
   white-space: pre-wrap;
 }
 
-.bot-message {
+.bot-message,
+.chat-message.assistant {
   align-self: flex-start;
   border: 1px solid var(--border);
   border-bottom-left-radius: 4px;
@@ -1013,11 +1020,12 @@ section[id] {
   color: var(--text);
 }
 
-.user-message {
+.user-message,
+.chat-message.user {
   align-self: flex-end;
   border-bottom-right-radius: 4px;
   background: var(--accent);
-  color: #ffffff;
+  color: #fff;
 }
 
 .chat-suggestions {
@@ -1075,7 +1083,7 @@ section[id] {
   border: 0;
   border-radius: 10px;
   background: var(--accent);
-  color: #ffffff;
+  color: #fff;
   font-size: 1.4rem;
   font-weight: 700;
 }
@@ -1098,7 +1106,7 @@ section[id] {
 body.light-theme {
   --bg: #f6f7fb;
   --bg-alt: #edf0f7;
-  --card: #ffffff;
+  --card: #fff;
   --card-hover: #f0f1fa;
   --text: #171a27;
   --muted: #626b7e;
@@ -1107,7 +1115,6 @@ body.light-theme {
   --border: rgba(24, 31, 50, 0.13);
   --shadow: 0 20px 60px rgba(24, 31, 50, 0.1);
   --header-bg: rgba(246, 247, 251, 0.92);
-  --input-bg: #f8f9fc;
 }
 
 body.light-theme .code-window {
@@ -1127,11 +1134,7 @@ body.light-theme .code-comment {
 }
 
 body.light-theme .project-visual {
-  color: #ffffff;
-}
-
-body.light-theme #ediale-chat-box {
-  color: var(--text);
+  color: #fff;
 }
 
 
@@ -1230,8 +1233,7 @@ body.light-theme #ediale-chat-box {
 
   .hero {
     min-height: auto;
-    padding-top: 65px;
-    padding-bottom: 65px;
+    padding: 65px 0;
   }
 
   .hero-grid {
@@ -1266,14 +1268,8 @@ body.light-theme #ediale-chat-box {
     gap: 18px;
   }
 
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
+  .skills-grid,
+  .projects-grid,
   .writing-grid {
     grid-template-columns: 1fr;
   }
@@ -1296,7 +1292,7 @@ body.light-theme #ediale-chat-box {
     gap: 12px;
   }
 
-  /* Keep the chatbot above the page content on phones. */
+  /* Floating AI button on mobile */
 
   #ediale-ai-widget {
     right: 12px !important;
@@ -1304,19 +1300,17 @@ body.light-theme #ediale-chat-box {
   }
 
   #ediale-chat-button {
-    min-width: 132px !important;
     min-height: 48px !important;
-    padding: 12px 16px !important;
+    padding: 12px 15px !important;
     font-size: 13px !important;
   }
 
   #ediale-chat-box {
-    right: 0 !important;
-    bottom: 60px !important;
-    width: min(370px, calc(100vw - 24px)) !important;
-    height: min(500px, calc(100dvh - 95px)) !important;
-    min-height: 300px !important;
-    max-height: 500px !important;
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+    height: min(500px, 70dvh) !important;
+    max-height: 70dvh !important;
+    min-height: 260px !important;
     border-radius: 16px !important;
   }
 }
@@ -1344,8 +1338,13 @@ body.light-theme #ediale-chat-box {
   }
 
   #ediale-chat-button {
-    min-width: 124px !important;
     padding: 11px 13px !important;
+    font-size: 12px !important;
+  }
+
+  #ediale-chat-box {
+    width: calc(100vw - 20px) !important;
+    max-width: calc(100vw - 20px) !important;
   }
 }
 
@@ -1362,142 +1361,3 @@ body.light-theme #ediale-chat-box {
     transition-duration: 0.01ms !important;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-/* EDIALE AI — FLOATING WHATSAPP-STYLE BUTTON */
-
-#ediale-ai-widget {
-  position: fixed !important;
-  right: 16px !important;
-  bottom: 16px !important;
-  left: auto !important;
-  top: auto !important;
-  z-index: 99999 !important;
-  width: auto !important;
-  max-width: calc(100vw - 32px) !important;
-}
-
-/* Keep the floating button on-screen */
-#ediale-chat-button {
-  position: fixed !important;
-  right: 16px !important;
-  bottom: 16px !important;
-  left: auto !important;
-  top: auto !important;
-  z-index: 100000 !important;
-  max-width: calc(100vw - 32px) !important;
-  box-sizing: border-box !important;
-}
-
-/* Keep the chat window inside the screen */
-#ediale-chat-box {
-  position: fixed !important;
-  right: 16px !important;
-  bottom: 80px !important;
-  left: auto !important;
-  top: auto !important;
-  width: min(350px, calc(100vw - 32px)) !important;
-  max-width: calc(100vw - 32px) !important;
-  max-height: 70vh !important;
-  box-sizing: border-box !important;
-  z-index: 99999 !important;
-}
-
-@media (max-width: 480px) {
-  #ediale-ai-widget {
-    right: 12px !important;
-    bottom: 12px !important;
-  }
-
-  #ediale-chat-button {
-    right: 12px !important;
-    bottom: 12px !important;
-  }
-
-  #ediale-chat-box {
-    right: 12px !important;
-    bottom: 72px !important;
-    width: calc(100vw - 24px) !important;
-    max-width: calc(100vw - 24px) !important;
-    max-height: 70vh !important;
-  }
-}
-
-
-
-
-
-
-
-/* FIX MOBILE HORIZONTAL OVERFLOW */
-html,
-body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: clip;
-}
-
-/* Keep Ediale AI fixed to the visible screen */
-#ediale-ai-widget {
-  position: fixed !important;
-  right: 16px !important;
-  bottom: 16px !important;
-  left: auto !important;
-  top: auto !important;
-  margin: 0 !important;
-  transform: none !important;
-  z-index: 999999 !important;
-}
-
-/* Keep the button inside the phone screen */
-#ediale-chat-button {
-  position: fixed !important;
-  right: 16px !important;
-  bottom: 16px !important;
-  left: auto !important;
-  top: auto !important;
-  margin: 0 !important;
-  transform: none !important;
-  max-width: calc(100vw - 32px) !important;
-  box-sizing: border-box !important;
-  z-index: 1000000 !important;
-}
-
-/* Keep the chat window within the screen */
-#ediale-chat-box {
-  position: fixed !important;
-  right: 16px !important;
-  bottom: 80px !important;
-  left: auto !important;
-  top: auto !important;
-  transform: none !important;
-  width: min(350px, calc(100vw - 32px)) !important;
-  max-width: calc(100vw - 32px) !important;
-  box-sizing: border-box !important;
-  z-index: 999999 !important;
-}
-
-@media (max-width: 480px) {
-  #ediale-ai-widget,
-  #ediale-chat-button {
-    right: 12px !important;
-    bottom: 12px !important;
-  }
-
-  #ediale-chat-box {
-    right: 12px !important;
-    bottom: 72px !important;
-    width: calc(100vw - 24px) !important;
-    max-width: calc(100vw - 24px) !important;
-  }
-}
-
