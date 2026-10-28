@@ -1,9 +1,3 @@
-/* =========================================
-   EDIALE PORTFOLIO — COMPLETE STYLESHEET
-   ========================================= */
-
-/* 1. RESET AND VARIABLES */
-
 :root {
   --bg: #080b12;
   --bg-alt: #0d111b;
@@ -13,9 +7,9 @@
   --muted: #a0aabd;
   --accent: #8b6cff;
   --accent-light: #b6a3ff;
-  --border: rgba(255, 255, 255, 0.1);
-  --shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-  --header-bg: rgba(8, 11, 18, 0.9);
+  --border: rgba(255, 255, 255, .1);
+  --shadow: 0 20px 60px rgba(0, 0, 0, .25);
+  --header-bg: rgba(8, 11, 18, .9);
   --input-bg: #0b101b;
 }
 
@@ -29,17 +23,20 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
   width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
   min-height: 100vh;
   width: 100%;
+  max-width: 100%;
   background: var(--bg);
   color: var(--text);
   font-family: "DM Sans", sans-serif;
   line-height: 1.7;
-  overflow-x: hidden;
-  transition: background 0.25s ease, color 0.25s ease;
+  overflow-x: clip;
+  transition: background .25s ease, color .25s ease;
 }
 
 body,
@@ -108,7 +105,7 @@ img {
   width: 450px;
   height: 450px;
   border-radius: 50%;
-  background: rgba(112, 76, 255, 0.12);
+  background: rgba(112, 76, 255, .12);
   filter: blur(110px);
   pointer-events: none;
   z-index: -1;
@@ -117,7 +114,7 @@ img {
 .eyebrow {
   margin-bottom: 12px;
   color: var(--accent-light);
-  font-size: 0.76rem;
+  font-size: .76rem;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -153,8 +150,7 @@ section[id] {
   scroll-margin-top: 85px;
 }
 
-
-/* 2. HEADER AND NAVIGATION */
+/* NAVIGATION */
 
 .site-header {
   position: sticky;
@@ -194,24 +190,28 @@ section[id] {
 
 .nav-links a {
   color: var(--muted);
-  font-size: 0.9rem;
-  transition: color 0.2s ease;
+  font-size: .9rem;
+  transition: color .2s;
 }
 
 .nav-links a:hover {
   color: var(--accent-light);
 }
 
+.theme-toggle,
+.menu-toggle {
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+}
+
 .theme-toggle {
   width: 42px;
   height: 42px;
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--border);
   border-radius: 50%;
-  background: var(--card);
-  color: var(--text);
   font-size: 1.3rem;
 }
 
@@ -219,10 +219,7 @@ section[id] {
   display: none;
   width: 42px;
   height: 42px;
-  flex-shrink: 0;
-  border: 1px solid var(--border);
   border-radius: 10px;
-  background: var(--card);
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -236,8 +233,7 @@ section[id] {
   background: var(--text);
 }
 
-
-/* 3. BUTTONS */
+/* BUTTONS */
 
 .button {
   min-height: 48px;
@@ -247,13 +243,10 @@ section[id] {
   padding: 12px 22px;
   border: 1px solid transparent;
   border-radius: 10px;
-  font-size: 0.94rem;
+  font-size: .94rem;
   font-weight: 700;
   text-align: center;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    border-color 0.2s ease;
+  transition: transform .2s, background .2s, border-color .2s;
 }
 
 .button:hover {
@@ -279,8 +272,7 @@ section[id] {
   border-color: var(--accent);
 }
 
-
-/* 4. HERO SECTION */
+/* HERO */
 
 .hero {
   min-height: 620px;
@@ -291,7 +283,7 @@ section[id] {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.1fr .9fr;
   align-items: center;
   gap: 65px;
 }
@@ -303,11 +295,11 @@ section[id] {
   gap: 9px;
   margin-bottom: 26px;
   padding: 7px 12px;
-  border: 1px solid rgba(87, 214, 154, 0.25);
+  border: 1px solid rgba(87, 214, 154, .25);
   border-radius: 50px;
-  background: rgba(87, 214, 154, 0.07);
+  background: rgba(87, 214, 154, .07);
   color: #79e5ae;
-  font-size: 0.72rem;
+  font-size: .72rem;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -338,31 +330,26 @@ section[id] {
   line-height: 1.9;
 }
 
-.hero-actions {
+.hero-actions,
+.hero-socials {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
 
 .hero-socials {
-  display: flex;
-  flex-wrap: wrap;
   gap: 22px;
   margin-top: 30px;
 }
 
 .hero-socials a {
   color: var(--muted);
-  font-size: 0.9rem;
-  transition: color 0.2s ease;
+  font-size: .9rem;
 }
 
 .hero-socials a:hover {
   color: var(--accent-light);
 }
-
-
-/* 5. CODE WINDOW */
 
 .hero-card {
   width: 100%;
@@ -387,9 +374,9 @@ section[id] {
   justify-content: space-between;
   gap: 12px;
   padding: 0 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
   color: #9ba8bf;
-  font-size: 0.78rem;
+  font-size: .78rem;
 }
 
 .window-dots {
@@ -420,22 +407,19 @@ section[id] {
   padding: 28px 24px;
   color: #e5eaff;
   font-family: monospace;
-  font-size: clamp(0.75rem, 1.4vw, 0.94rem);
-  line-height: 2;
-  overflow-wrap: anywhere;
+  font-size: .9rem;
 }
 
 .code-content p {
   color: inherit;
-  font-family: monospace;
 }
 
 .code-indent {
-  padding-left: 24px;
+  padding-left: 22px;
 }
 
 .code-indent-2 {
-  padding-left: 48px;
+  padding-left: 44px;
 }
 
 .code-purple {
@@ -443,72 +427,58 @@ section[id] {
 }
 
 .code-green {
-  color: #8ce6b0;
+  color: #82e6ad;
 }
 
 .code-comment {
-  margin-top: 20px;
-  color: #76849f !important;
+  margin-top: 12px;
+  color: #9aa6bd;
 }
 
 .code-window-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, .08);
   border-bottom: 0;
 }
 
-
-/* 6. SECTION HEADINGS */
+/* ABOUT AND SKILLS */
 
 .section-heading {
-  max-width: 700px;
-  margin-bottom: 45px;
+  max-width: 720px;
+  margin-bottom: 42px;
 }
 
 .section-heading h2 {
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
-
-.section-heading > p:last-child {
-  max-width: 600px;
-  font-size: 1rem;
-  line-height: 1.8;
-}
-
-
-/* 7. ABOUT */
 
 .about-content {
-  max-width: 850px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  gap: 32px;
+  max-width: 950px;
 }
 
 .about-content p {
-  font-size: 1.02rem;
-  line-height: 1.95;
+  line-height: 1.9;
 }
-
-
-/* 8. SKILLS */
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
 }
 
-.skill-card {
-  padding: 26px;
+.skill-card,
+.project-card,
+.writing-card {
   border: 1px solid var(--border);
   border-radius: 16px;
   background: var(--card);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
 }
 
-.skill-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent);
+.skill-card {
+  padding: 24px;
 }
 
 .skill-icon {
@@ -516,109 +486,84 @@ section[id] {
   height: 48px;
   display: grid;
   place-items: center;
-  margin-bottom: 20px;
-  border: 1px solid rgba(139, 108, 255, 0.3);
+  margin-bottom: 22px;
   border-radius: 12px;
-  background: rgba(139, 108, 255, 0.12);
+  background: rgba(139, 108, 255, .14);
   color: var(--accent-light);
-  font-family: monospace;
-  font-size: 0.9rem;
   font-weight: 700;
 }
 
 .skill-card h3 {
   margin-bottom: 10px;
-  font-size: 1.1rem;
 }
 
-.skill-card p {
-  font-size: 0.92rem;
-  line-height: 1.8;
+.skill-card p,
+.project-body > p:not(.project-category),
+.writing-card p {
+  font-size: .92rem;
+  line-height: 1.75;
 }
 
-
-/* 9. PROJECTS */
+/* PROJECTS */
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+  gap: 22px;
 }
 
 .project-card {
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: var(--card);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform .2s, border-color .2s;
 }
 
 .project-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(139, 108, 255, 0.6);
+  border-color: rgba(139, 108, 255, .5);
 }
 
 .project-visual {
-  min-height: 180px;
-  position: relative;
+  min-height: 190px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #161d30;
-}
-
-.project-visual::before,
-.project-visual::after {
-  content: "";
-  position: absolute;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 50%;
-}
-
-.project-visual::before {
-  width: 200px;
-  height: 200px;
-}
-
-.project-visual::after {
-  width: 300px;
-  height: 300px;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 24px;
+  color: #fff;
+  background: linear-gradient(135deg, #33225d, #171c38);
 }
 
 .project-restaurant {
-  background: linear-gradient(135deg, #33271f, #111827);
+  background: linear-gradient(135deg, #503322, #1e1920);
+}
+
+.project-beyond {
+  background: radial-gradient(circle at 75% 20%, #5e4cc4, #15142c 60%, #090b14);
 }
 
 .project-expense {
-  background: linear-gradient(135deg, #163b39, #111827);
+  background: linear-gradient(135deg, #15534d, #101d2a);
 }
 
 .project-task {
-  background: linear-gradient(135deg, #30244e, #111827);
+  background: linear-gradient(135deg, #28477b, #161b35);
 }
 
 .project-portfolio {
-  background: linear-gradient(135deg, #252f49, #111827);
+  background: linear-gradient(135deg, #5b3f9e, #17152d);
 }
 
 .project-number {
-  position: absolute;
-  top: 16px;
-  left: 18px;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.78rem;
+  align-self: flex-start;
+  font-size: .8rem;
+  opacity: .8;
 }
 
 .project-visual-label {
-  position: relative;
-  z-index: 1;
-  color: #fff;
   font-family: "Space Grotesk", sans-serif;
-  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
   font-weight: 700;
-  letter-spacing: 3px;
-  text-align: center;
+  letter-spacing: 1px;
+  text-align: right;
 }
 
 .project-body {
@@ -628,7 +573,7 @@ section[id] {
 .project-category {
   margin-bottom: 10px;
   color: var(--accent-light);
-  font-size: 0.7rem;
+  font-size: .7rem;
   font-weight: 700;
   letter-spacing: 1.5px;
 }
@@ -638,44 +583,43 @@ section[id] {
 }
 
 .project-body > p:not(.project-category) {
-  margin-bottom: 20px;
-  font-size: 0.94rem;
-  line-height: 1.85;
+  margin-bottom: 18px;
 }
 
 .project-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
 .project-tags span {
-  padding: 5px 10px;
+  padding: 5px 9px;
   border: 1px solid var(--border);
   border-radius: 6px;
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: .75rem;
 }
 
 .project-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 18px;
 }
 
-.project-links a {
+.project-links a,
+.github-contact {
   color: var(--accent-light);
-  font-size: 0.88rem;
+  font-size: .88rem;
   font-weight: 700;
 }
 
-.project-links a:hover {
-  color: var(--text);
+.project-links a:hover,
+.github-contact:hover {
+  text-decoration: underline;
 }
 
-
-/* 10. SCRIPTWRITING */
+/* WRITING AND CONTACT */
 
 .writing-grid {
   display: grid;
@@ -684,56 +628,39 @@ section[id] {
 }
 
 .writing-card {
-  padding: 30px;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: var(--card);
+  padding: 28px;
 }
 
 .writing-label {
   display: inline-block;
   margin-bottom: 18px;
   color: var(--accent-light);
-  font-size: 0.72rem;
+  font-size: .72rem;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.4px;
 }
 
 .writing-card h3 {
-  margin-bottom: 15px;
-  font-size: 1.35rem;
+  margin-bottom: 12px;
 }
-
-.writing-card p {
-  font-size: 0.95rem;
-  line-height: 1.9;
-}
-
-
-/* 11. CONTACT */
 
 .contact-panel {
   max-width: 760px;
-  margin-inline: auto;
-  padding: clamp(24px, 5vw, 50px);
+  margin: auto;
+  padding: 42px;
   border: 1px solid var(--border);
-  border-radius: 22px;
+  border-radius: 20px;
   background: var(--card);
-  box-shadow: var(--shadow);
-}
-
-.contact-panel > h2 {
-  margin-bottom: 16px;
 }
 
 .contact-panel > p:not(.eyebrow) {
-  margin-bottom: 30px;
-  line-height: 1.9;
+  margin: 14px 0 26px;
+  line-height: 1.8;
 }
 
-#contact-form {
+.contact-panel form {
   display: grid;
-  gap: 20px;
+  gap: 18px;
 }
 
 .form-row {
@@ -742,15 +669,15 @@ section[id] {
 }
 
 .form-row label {
-  font-size: 0.9rem;
+  font-size: .9rem;
   font-weight: 600;
 }
 
 .form-row input,
 .form-row textarea {
   width: 100%;
-  min-height: 48px;
-  padding: 13px 15px;
+  min-width: 0;
+  padding: 13px 14px;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--input-bg);
@@ -758,39 +685,22 @@ section[id] {
 }
 
 .form-row textarea {
-  min-height: 140px;
   resize: vertical;
 }
 
-.form-row input::placeholder,
-.form-row textarea::placeholder {
-  color: #78849a;
-}
-
-#contact-submit {
-  justify-self: start;
-}
-
 .form-status {
-  min-height: 24px;
-  font-size: 0.9rem;
+  min-height: 1.5em;
+  font-size: .9rem;
 }
 
 .github-contact {
   display: inline-block;
   margin-top: 22px;
-  color: var(--accent-light);
-  font-weight: 700;
-  font-size: 0.9rem;
 }
-
-
-/* 12. FOOTER */
 
 .site-footer {
   padding: 28px 0;
   border-top: 1px solid var(--border);
-  background: var(--bg-alt);
 }
 
 .footer-content {
@@ -802,118 +712,72 @@ section[id] {
 
 .footer-content p,
 .footer-content > a:last-child {
-  font-size: 0.85rem;
-}
-
-.footer-content > a:last-child {
+  font-size: .85rem;
   color: var(--muted);
 }
 
-.footer-content > a:last-child:hover {
-  color: var(--accent-light);
-}
-
-
-/* 13. EDIALE AI CHAT WIDGET */
-
-/*
-  IMPORTANT:
-  Keep #ediale-ai-widget as a direct child of <body> in index.html.
-  This allows the floating button to stay fixed to the viewport.
-*/
+/* EDIALE AI: THE BUTTON AND CHAT WINDOW ARE FIXED INDEPENDENTLY */
 
 #ediale-ai-widget {
-  position: fixed !important;
-  right: 16px !important;
-  bottom: 16px !important;
-  left: auto !important;
-  top: auto !important;
-  width: auto !important;
-  height: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: visible !important;
-  transform: none !important;
-  z-index: 2147483000 !important;
-  font-family: "DM Sans", sans-serif;
-  pointer-events: none !important;
+  position: static !important;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  pointer-events: none;
 }
-
-#ediale-ai-widget *,
-#ediale-ai-widget *::before,
-#ediale-ai-widget *::after {
-  box-sizing: border-box;
-}
-
-/* Floating assistant button */
 
 #ediale-chat-button {
-  position: relative !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 9px !important;
-  width: auto !important;
-  min-width: 0 !important;
-  max-width: calc(100vw - 32px) !important;
-  min-height: 52px !important;
-  height: auto !important;
-  margin: 0 !important;
-  padding: 14px 19px !important;
-  border: 1px solid rgba(255, 255, 255, 0.22) !important;
-  border-radius: 999px !important;
-  background: linear-gradient(135deg, #8b6cff, #6745e8) !important;
-  color: #fff !important;
-  box-shadow: 0 8px 30px rgba(91, 63, 219, 0.4) !important;
-  font-family: "DM Sans", sans-serif !important;
-  font-size: 14px !important;
-  font-weight: 700 !important;
-  line-height: 1.2 !important;
-  text-align: center !important;
-  white-space: nowrap !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  cursor: pointer !important;
-  pointer-events: auto !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-}
-
-#ediale-chat-button:hover {
-  transform: translateY(-3px) !important;
-  box-shadow: 0 12px 35px rgba(91, 63, 219, 0.5) !important;
+  position: fixed !important;
+  right: max(16px, env(safe-area-inset-right)) !important;
+  bottom: max(16px, env(safe-area-inset-bottom)) !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: 2147483000 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 54px;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, .35);
+  font-size: .9rem;
+  font-weight: 700;
+  white-space: nowrap;
+  max-width: calc(100vw - 24px);
+  pointer-events: auto;
+  transform: none !important;
 }
 
 .chat-button-icon {
-  font-size: 18px;
+  font-size: 1.2rem;
   line-height: 1;
 }
 
-/* Chat window opens above the floating button */
-
 #ediale-chat-box {
-  position: absolute !important;
-  right: 0 !important;
-  bottom: calc(100% + 12px) !important;
+  position: fixed !important;
+  right: max(16px, env(safe-area-inset-right)) !important;
+  bottom: calc(max(16px, env(safe-area-inset-bottom)) + 70px) !important;
   left: auto !important;
   top: auto !important;
-  display: none !important;
-  flex-direction: column !important;
-  width: min(370px, calc(100vw - 32px)) !important;
-  height: min(520px, 70dvh) !important;
-  min-height: 280px !important;
-  max-height: 70dvh !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 18px !important;
-  background: var(--card) !important;
-  color: var(--text) !important;
-  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45) !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  transform: none !important;
-  pointer-events: auto !important;
+  z-index: 2147482999 !important;
+  display: none;
+  flex-direction: column;
+  width: min(370px, calc(100vw - 24px));
+  height: min(520px, calc(100dvh - 110px));
+  min-height: 280px;
+  max-height: calc(100dvh - 100px);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--card);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, .45);
+  pointer-events: auto;
 }
 
 #ediale-chat-box.is-open {
@@ -921,18 +785,16 @@ section[id] {
 }
 
 .chat-header {
-  min-height: 76px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 14px 16px;
+  padding: 16px;
   border-bottom: 1px solid var(--border);
   background: var(--bg-alt);
 }
 
 .chat-header-info {
-  min-width: 0;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -941,51 +803,34 @@ section[id] {
 .chat-avatar {
   width: 42px;
   height: 42px;
-  flex-shrink: 0;
   display: grid;
   place-items: center;
   border-radius: 50%;
   background: var(--accent);
   color: #fff;
-  font-size: 1.2rem;
   font-weight: 700;
 }
 
 .chat-header h2 {
-  margin-bottom: 3px;
-  font-family: "DM Sans", sans-serif;
-  font-size: 1rem;
+  font-size: 1.15rem;
   letter-spacing: 0;
 }
 
 .chat-header p {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.76rem;
-}
-
-.chat-online-dot {
-  width: 7px;
-  height: 7px;
+  gap: 7px;
+  font-size: .78rem;
 }
 
 .chat-close {
   width: 36px;
   height: 36px;
-  flex-shrink: 0;
-  display: grid;
-  place-items: center;
   border: 0;
-  border-radius: 50%;
+  border-radius: 9px;
   background: transparent;
   color: var(--text);
   font-size: 1.7rem;
-  line-height: 1;
-}
-
-.chat-close:hover {
-  background: var(--card-hover);
 }
 
 .chat-messages {
@@ -1005,7 +850,7 @@ section[id] {
   max-width: 90%;
   padding: 11px 13px;
   border-radius: 13px;
-  font-size: 0.88rem;
+  font-size: .88rem;
   line-height: 1.65;
   overflow-wrap: anywhere;
   white-space: pre-wrap;
@@ -1041,11 +886,7 @@ section[id] {
   border-radius: 20px;
   background: transparent;
   color: var(--accent-light);
-  font-size: 0.76rem;
-}
-
-.chat-suggestions button:hover {
-  background: rgba(139, 108, 255, 0.12);
+  font-size: .76rem;
 }
 
 .chat-input-form {
@@ -1066,12 +907,7 @@ section[id] {
   border-radius: 10px;
   background: var(--input-bg);
   color: var(--text);
-  font-family: "DM Sans", sans-serif;
-  font-size: 0.88rem;
-}
-
-#ediale-chat-input::placeholder {
-  color: var(--muted);
+  font-size: .88rem;
 }
 
 #ediale-chat-send {
@@ -1090,18 +926,17 @@ section[id] {
 
 #ediale-chat-send:disabled {
   cursor: not-allowed;
-  opacity: 0.55;
+  opacity: .55;
 }
 
 .chat-footer-note {
   padding: 0 12px 10px;
   background: var(--card);
-  font-size: 0.68rem;
+  font-size: .68rem;
   text-align: center;
 }
 
-
-/* 14. LIGHT THEME */
+/* LIGHT THEME */
 
 body.light-theme {
   --bg: #f6f7fb;
@@ -1112,9 +947,9 @@ body.light-theme {
   --muted: #626b7e;
   --accent: #6946e8;
   --accent-light: #6544d9;
-  --border: rgba(24, 31, 50, 0.13);
-  --shadow: 0 20px 60px rgba(24, 31, 50, 0.1);
-  --header-bg: rgba(246, 247, 251, 0.92);
+  --border: rgba(24, 31, 50, .13);
+  --shadow: 0 20px 60px rgba(24, 31, 50, .1);
+  --header-bg: rgba(246, 247, 251, .92);
 }
 
 body.light-theme .code-window {
@@ -1137,8 +972,7 @@ body.light-theme .project-visual {
   color: #fff;
 }
 
-
-/* 15. TABLET LAYOUT */
+/* TABLETS */
 
 @media (max-width: 900px) {
   .navbar {
@@ -1150,11 +984,11 @@ body.light-theme .project-visual {
   }
 
   .nav-links a {
-    font-size: 0.82rem;
+    font-size: .82rem;
   }
 
   .hero-grid {
-    grid-template-columns: 1fr 0.85fr;
+    grid-template-columns: 1fr .85fr;
     gap: 30px;
   }
 
@@ -1171,8 +1005,7 @@ body.light-theme .project-visual {
   }
 }
 
-
-/* 16. MOBILE LAYOUT */
+/* MOBILE */
 
 @media (max-width: 680px) {
   .container {
@@ -1224,7 +1057,7 @@ body.light-theme .project-visual {
   .nav-links a {
     padding: 12px 4px;
     border-bottom: 1px solid var(--border);
-    font-size: 0.95rem;
+    font-size: .95rem;
   }
 
   .nav-links a:last-child {
@@ -1237,7 +1070,7 @@ body.light-theme .project-visual {
   }
 
   .hero-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 48px;
   }
 
@@ -1247,7 +1080,7 @@ body.light-theme .project-visual {
   }
 
   .hero-description {
-    font-size: 0.98rem;
+    font-size: .98rem;
   }
 
   .hero-card {
@@ -1260,7 +1093,7 @@ body.light-theme .project-visual {
 
   .code-content {
     padding: 22px 18px;
-    font-size: 0.8rem;
+    font-size: .8rem;
   }
 
   .about-content {
@@ -1271,7 +1104,7 @@ body.light-theme .project-visual {
   .skills-grid,
   .projects-grid,
   .writing-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .project-visual {
@@ -1292,31 +1125,24 @@ body.light-theme .project-visual {
     gap: 12px;
   }
 
-  /* Floating AI button on mobile */
-
-  #ediale-ai-widget {
-    right: 12px !important;
-    bottom: 12px !important;
-  }
-
   #ediale-chat-button {
-    min-height: 48px !important;
-    padding: 12px 15px !important;
-    font-size: 13px !important;
+    right: max(12px, env(safe-area-inset-right)) !important;
+    bottom: max(12px, env(safe-area-inset-bottom)) !important;
+    min-height: 48px;
+    padding: 12px 15px;
+    font-size: 13px;
   }
 
   #ediale-chat-box {
-    width: calc(100vw - 24px) !important;
-    max-width: calc(100vw - 24px) !important;
-    height: min(500px, 70dvh) !important;
-    max-height: 70dvh !important;
-    min-height: 260px !important;
-    border-radius: 16px !important;
+    right: max(12px, env(safe-area-inset-right)) !important;
+    bottom: calc(max(12px, env(safe-area-inset-bottom)) + 60px) !important;
+    width: calc(100vw - 24px);
+    height: min(500px, 70dvh);
+    max-height: 70dvh;
+    min-height: 260px;
+    border-radius: 16px;
   }
 }
-
-
-/* 17. SMALL PHONES */
 
 @media (max-width: 360px) {
   .container {
@@ -1324,74 +1150,22 @@ body.light-theme .project-visual {
   }
 
   .hero-actions {
-    flex-direction: column;
     align-items: stretch;
+    flex-direction: column;
   }
 
   .hero-actions .button {
     width: 100%;
   }
 
-  #ediale-ai-widget {
+  #ediale-chat-button {
     right: 10px !important;
     bottom: 10px !important;
   }
 
-  #ediale-chat-button {
-    padding: 11px 13px !important;
-    font-size: 12px !important;
-  }
-
   #ediale-chat-box {
-    width: calc(100vw - 20px) !important;
-    max-width: calc(100vw - 20px) !important;
-  }
-}
-
-
-/* 18. REDUCED MOTION */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-
-
-
-
-
-
-
-     
-/* Final mobile viewport fix for Ediale AI */
-@media (max-width: 680px) {
-  #ediale-ai-widget {
-    position: fixed !important;
-    right: 12px !important;
-    bottom: 12px !important;
-    left: auto !important;
-    top: auto !important;
-    width: max-content !important;
-    max-width: calc(100vw - 24px) !important;
-    transform: none !important;
-    z-index: 2147483647 !important;
-  }
-
-  #ediale-chat-button {
-    position: relative !important;
-    max-width: 100% !important;
-  }
-
-  #ediale-chat-box {
-    right: 0 !important;
-    left: auto !important;
-    max-width: calc(100vw - 24px) !important;
+    right: 10px !important;
+    bottom: 68px !important;
+    width: calc(100vw - 20px);
   }
 }
