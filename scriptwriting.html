@@ -13,6 +13,43 @@
 
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+
+  <style>
+    .slides-gallery {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .slide-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .slide-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .slide-caption {
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    .slides-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      align-items: center;
+    }
+  </style>
 </head>
 
 <body>
@@ -41,7 +78,7 @@
 
   <main>
     <!-- PAGE HERO -->
-    <section class="section" style="padding-top: 120px; padding-bottom: 60px;">
+    <section class="section" style="padding-top: 120px; padding-bottom: 50px;">
       <div class="container">
         <div class="section-heading" style="max-width: 780px;">
           <p class="eyebrow">BEYOND CODE</p>
@@ -56,7 +93,7 @@
     </section>
 
     <!-- TWO FEATURED SCRIPTS -->
-    <section class="section section-alt" style="padding-top: 70px;">
+    <section class="section section-alt" style="padding-top: 60px;">
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">FEATURED SCRIPTS</p>
@@ -64,13 +101,12 @@
         </div>
 
         <div class="writing-grid">
-          <!-- Psychology Script -->
           <article class="writing-card">
             <span class="writing-label">PSYCHOLOGY</span>
             <h3>The Psychology of Procrastination</h3>
             <p>
               A research-informed long-form script exploring why we delay tasks and how to build better habits.
-              Structured as Hook → Problem → Science → Tools → Close, with every claim grounded in psychology research.
+              Structured as Hook → Problem → Science → Tools → Close.
             </p>
             <ul class="writing-meta">
               <li><strong>Format:</strong> Long-form (YouTube / Course / Podcast)</li>
@@ -79,7 +115,6 @@
             </ul>
           </article>
 
-          <!-- Personal Development Script -->
           <article class="writing-card">
             <span class="writing-label">PERSONAL DEVELOPMENT</span>
             <h3>3 Signs You're Wasting Your Time</h3>
@@ -97,194 +132,71 @@
       </div>
     </section>
 
-    <!-- FULL PORTFOLIO DECK -->
+    <!-- FULL PORTFOLIO SLIDES -->
     <section class="section">
       <div class="container">
         <div class="section-heading">
           <p class="eyebrow">FULL SCRIPT PORTFOLIO</p>
-          <h2>View the complete deck.</h2>
-          <p>
-            A 9-slide professional presentation with structure breakdowns, sample lines, and process details — designed for potential clients who need scripting skills.
-          </p>
+          <h2>Complete deck (9 slides)</h2>
+          <p>Professional presentation showing structure, sample lines, and process — designed for potential clients.</p>
         </div>
 
-        <!-- Embed / Fallback -->
-        <div class="portfolio-embed-wrapper" style="
-          background: var(--card);
-          border: 1px solid var(--border);
-          border-radius: 18px;
-          overflow: hidden;
-          margin-bottom: 2rem;
-        ">
-          <div style="
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            height: 0;
-            background: #0f172a;
-          ">
-            <!-- 
-              TO ACTIVATE LIVE EMBED:
-              1. Upload Script_Portfolio.pptx to Google Drive
-              2. Open with Google Slides
-              3. File → Share → Publish to web → Embed
-              4. Paste the src below
-            -->
-            <iframe 
-              id="script-portfolio-iframe"
-              src="https://docs.google.com/presentation/d/1AzOadaaTGbz9dHZIjifI67WZu520Z6vl/edit?usp=drivesdk&ouid=105777184739659778339&rtpof=true&sd=true" 
-              title="Ediale Script Portfolio"
-              style="
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                border: none;
-              "
-              allowfullscreen
-              loading="lazy">
-            </iframe>
+        <div class="slides-gallery">
+          <div class="slide-card">
+            <img src="slide-1%20(1).jpg" alt="Script Portfolio Cover">
+            <div class="slide-caption">01 — Cover</div>
+          </div>
 
-            <!-- Fallback shown when no embed is set -->
-            <div id="portfolio-fallback" style="
-              position: absolute;
-              inset: 0;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center;
-              gap: 1.25rem;
-              padding: 2rem;
-              text-align: center;
-              background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
-              color: #e2e8f0;
-            ">
-              <div style="font-size: 2.8rem; opacity: 0.9;">📊</div>
-              <h3 style="margin: 0; font-size: 1.5rem; font-weight: 600; font-family: 'Space Grotesk', sans-serif;">
-                Script Portfolio Deck
-              </h3>
-              <p style="margin: 0; max-width: 440px; opacity: 0.8; line-height: 1.6;">
-                9 professional slides covering structure, sample lines, process, and positioning for both scripts.
-              </p>
-              <div style="display: flex; flex-wrap: wrap; gap: 0.85rem; justify-content: center; margin-top: 0.5rem;">
-                <a href="Script_Portfolio.pptx" download class="button button-primary" style="text-decoration: none;">
-                  Download PowerPoint
-                </a>
-                <a href="index.html#contact" class="button button-secondary" style="text-decoration: none;">
-                  Request a custom script
-                </a>
-              </div>
-              <p style="margin: 1.1rem 0 0; font-size: 0.85rem; opacity: 0.55; max-width: 480px;">
-                Tip: Upload the .pptx to Google Drive → Open with Slides → Publish to web → paste the embed code into this page for live viewing.
-              </p>
-            </div>
+          <div class="slide-card">
+            <img src="slide-2.jpg" alt="About">
+            <div class="slide-caption">02 — About</div>
+          </div>
+
+          <div class="slide-card">
+            <img src="slide-3.jpg" alt="Services">
+            <div class="slide-caption">03 — Services</div>
+          </div>
+
+          <div class="slide-card">
+            <img src="slide-4.jpg" alt="Featured Work">
+            <div class="slide-caption">04 — Featured Work</div>
+          </div>
+
+          <div class="slide-card">
+            <img src="slide-5.jpg" alt="Psychology Script Detail">
+            <div class="slide-caption">05 — Psychology Script Detail</div>
+          </div>
+
+          <div class="slide-card">
+            <img src="slide-6.jpg" alt="Psychology Sample Lines">
+            <div class="slide-caption">06 — Psychology Sample Lines</div>
+          </div>
+
+          <div class="slide-card">
+            <img src="slide-7.jpg" alt="Short-form Script Detail">
+            <div class="slide-caption">07 — Short-form Script Detail</div>
+          </div>
+
+          <div class="slide-card">
+            <img src="slide-8.jpg" alt="Short-form Sample Lines">
+            <div class="slide-caption">08 — Short-form Sample Lines</div>
+          </div>
+
+          <div class="slide-card">
+            <img src="slide-9.jpg" alt="Call to Action">
+            <div class="slide-caption">09 — Call to Action</div>
           </div>
         </div>
 
-        <!-- Quick actions -->
-        <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
-          <a href="Script_Portfolio.pptx" download class="button button-primary">
-            Download Full Deck (.pptx)
-          </a>
-          <span style="opacity: 0.55; font-size: 0.9rem;">or</span>
-          <a href="index.html#contact" class="button button-secondary">
-            Discuss a scripting project
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- SAMPLE LINES HIGHLIGHT -->
-    <section class="section section-alt">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">VOICE &amp; CRAFT</p>
-          <h2>Sample lines from the scripts.</h2>
-          <p>A quick look at the tone and research integration.</p>
-        </div>
-
-        <div style="display: grid; gap: 1.5rem; max-width: 900px;">
-          <!-- Sample 1 -->
-          <div style="
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.75rem 1.9rem;
-          ">
-            <p style="
-              font-size: 0.72rem;
-              font-weight: 700;
-              letter-spacing: 1.4px;
-              color: var(--accent-light);
-              margin-bottom: 0.75rem;
-            ">PSYCHOLOGY · HOOK</p>
-            <p style="
-              font-size: 1.15rem;
-              line-height: 1.7;
-              color: var(--text);
-              font-style: italic;
-              margin: 0;
-            ">
-              “You don’t procrastinate because you’re lazy. You procrastinate because the task makes you feel something you’d rather not feel — and your brain has gotten very good at protecting you from that feeling.”
-            </p>
-          </div>
-
-          <!-- Sample 2 -->
-          <div style="
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.75rem 1.9rem;
-          ">
-            <p style="
-              font-size: 0.72rem;
-              font-weight: 700;
-              letter-spacing: 1.4px;
-              color: var(--accent-light);
-              margin-bottom: 0.75rem;
-            ">PERSONAL DEVELOPMENT · OPENING</p>
-            <p style="
-              font-size: 1.15rem;
-              line-height: 1.7;
-              color: var(--text);
-              font-style: italic;
-              margin: 0;
-            ">
-              “You’re not lazy. You’re just really good at looking busy. Here’s the difference most people never notice…”
-            </p>
-          </div>
-
-          <!-- Sample 3 -->
-          <div style="
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.75rem 1.9rem;
-          ">
-            <p style="
-              font-size: 0.72rem;
-              font-weight: 700;
-              letter-spacing: 1.4px;
-              color: var(--accent-light);
-              margin-bottom: 0.75rem;
-            ">PSYCHOLOGY · CLOSING</p>
-            <p style="
-              font-size: 1.15rem;
-              line-height: 1.7;
-              color: var(--text);
-              font-style: italic;
-              margin: 0;
-            ">
-              “Instead of fighting the emotion, name it. Then shrink the task until the emotional cost drops below the cost of delaying. That’s not motivation. That’s design.”
-            </p>
-          </div>
+        <div class="slides-actions">
+          <a href="index.html#contact" class="button button-primary">Discuss a scripting project</a>
+          <a href="portfolio_slides.zip" class="button button-secondary" download>Download all slides</a>
         </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="section">
+    <section class="section section-alt">
       <div class="container">
         <div class="contact-panel" style="text-align: center;">
           <p class="eyebrow">LET’S WORK TOGETHER</p>
@@ -294,7 +206,6 @@
           </p>
           <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1.75rem;">
             <a href="index.html#contact" class="button button-primary">Get in touch</a>
-            <a href="Script_Portfolio.pptx" download class="button button-secondary">Download the deck</a>
           </div>
         </div>
       </div>
